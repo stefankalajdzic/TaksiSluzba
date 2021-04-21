@@ -87,6 +87,7 @@ public class Automobil {
 				+ godinaProizvodnje + ", brRegistarskeOznake=" + brRegistarskeOznake + ", vrstaTaksiVozila="
 				+ vrstaTaksiVozila + "]";
 	}
+
 	
 	
 	

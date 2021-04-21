@@ -4,6 +4,7 @@ import enums.StatusVoznje;
 
 public class Voznja {
 
+	private int id;
 	private String datum;
 	private String vremePorudzbine;
 	private String adresaPolaska;
@@ -15,6 +16,7 @@ public class Voznja {
 	private StatusVoznje status;
 	
 	public Voznja() {
+		this.id = 0;
 		this.datum = "";
 		this.vremePorudzbine = "";
 		this.adresaPolaska = "";
@@ -26,10 +28,11 @@ public class Voznja {
 		this.status = null;
 	}
 
-	public Voznja(String datum, String vremePorudzbine, String adresaPolaska, String adresaDestinacije,
+	public Voznja(int id, String datum, String vremePorudzbine, String adresaPolaska, String adresaDestinacije,
 			Musterija musterija, Vozac vozac, String brojPredjenihKilometara, String trajanjeVoznje,
 			StatusVoznje status) {
 		super();
+		this.id = id;
 		this.datum = datum;
 		this.vremePorudzbine = vremePorudzbine;
 		this.adresaPolaska = adresaPolaska;
@@ -39,6 +42,14 @@ public class Voznja {
 		this.brojPredjenihKilometara = brojPredjenihKilometara;
 		this.trajanjeVoznje = trajanjeVoznje;
 		this.status = status;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getDatum() {
@@ -112,15 +123,14 @@ public class Voznja {
 	public void setStatus(StatusVoznje status) {
 		this.status = status;
 	}
-
+	
+	
 	@Override
 	public String toString() {
-		return "Voznja [datum=" + datum + ", vremePorudzbine=" + vremePorudzbine + ", adresaPolaska=" + adresaPolaska
-				+ ", adresaDestinacije=" + adresaDestinacije + ", musterija=" + musterija + ", vozac=" + vozac
-				+ ", brojPredjenihKilometara=" + brojPredjenihKilometara + ", trajanjeVoznje=" + trajanjeVoznje
+		return "Voznja [id=" + id + ", datum=" + datum + ", vremePorudzbine=" + vremePorudzbine + ", adresaPolaska="
+				+ adresaPolaska + ", adresaDestinacije=" + adresaDestinacije + ", musterija=" + musterija + ", vozac="
+				+ vozac + ", brojPredjenihKilometara=" + brojPredjenihKilometara + ", trajanjeVoznje=" + trajanjeVoznje
 				+ ", status=" + status + "]";
 	}
-	
-	
 	
 }

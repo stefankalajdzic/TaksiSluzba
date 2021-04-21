@@ -50,12 +50,11 @@ public class Dispecer extends Korisnik {
 
 	@Override
 	public String toString() {
-		return "Dispecer [plata=" + plata + ", brojTelefonskeLinije=" + brojTelefonskeLinije + ", telefonskaOdeljenja="
-				+ telefonskaOdeljenja + ", id=" + id + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka
+		return "Dispecer [id=" + id + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka
 				+ ", ime=" + ime + ", prezime=" + prezime + ", jmbg=" + jmbg + ", adresa=" + adresa + ", pol=" + pol
-				+ ", brojTelefona=" + brojTelefona + "]";
+				+ ", brojTelefona=" + brojTelefona + " plata=" + plata + ", brojTelefonskeLinije=" + brojTelefonskeLinije
+				+ ", telefonskaOdeljenja=" + "telefonskaOdeljenja]";
 	}
-	
 	
 	
 }

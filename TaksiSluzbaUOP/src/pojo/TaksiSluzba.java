@@ -64,13 +64,12 @@ public class TaksiSluzba {
 	public void setCenaPoKilometru(double cenaPoKilometru) {
 		this.cenaPoKilometru = cenaPoKilometru;
 	}
+	
 
 	@Override
 	public String toString() {
 		return "TaksiSluzba [pib=" + pib + ", naziv=" + naziv + ", adresa=" + adresa + ", cenaStartaVoznje="
 				+ cenaStartaVoznje + ", cenaPoKilometru=" + cenaPoKilometru + "]";
-	}
-	
-	
+	}	
 	
 }
