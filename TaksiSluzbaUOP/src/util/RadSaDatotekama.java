@@ -8,8 +8,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import enums.ModelAutomobila;
 import enums.Pol;
+import enums.ProizvodjacAutomobila;
 import enums.TelefonskaOdeljenja;
+import enums.VrstaTaksiVozila;
 import pojo.Automobil;
 import pojo.Dispecer;
 import pojo.Musterija;
@@ -82,6 +85,14 @@ public class RadSaDatotekama {
 	public void setAutomobili(ArrayList<Automobil> automobili) {
 		this.automobili = automobili;
 	}
+	
+	public void dodajAutomobil(Automobil automobil) {
+		this.automobili.add(automobil);
+	}
+	
+	public void obrisiAutomobil(Automobil automobil) {
+		this.automobili.remove(automobil);
+	}
 
 	public ArrayList<TaksiSluzba> getTaksiSluzbe() {
 		return taksiSluzbe;
@@ -130,6 +141,7 @@ public class RadSaDatotekama {
 	}
 	
 	public void snimiDispecere() {
+		
 		try {
 			File file = new File("src/files/dispeceri.txt");
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -178,6 +190,7 @@ public class RadSaDatotekama {
 	}
 
 	public void snimiMusterije() {
+		
 		try {
 			File file = new File("src/files/musterije.txt");
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -187,6 +200,50 @@ public class RadSaDatotekama {
 						+ musterija.getIme() + "|" + musterija.getPrezime() + "|"
 						+ musterija.getJmbg() + "|" + musterija.getAdresa() + "|" 
 						+ musterija.getPol().ordinal() + "|" + musterija.getBrojTelefona() + "\n";
+			}
+			
+			writer.write(sadrzaj);
+			writer.close();
+		} catch (Exception e) {
+			System.out.println("Greska prilikom upisa musterija u fajl.");
+		}
+	}
+	
+	public void ucitajAutomobile() {
+		
+		try {
+			File file = new File("src/files/automobili.txt");
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			String linija = null;
+			while((linija = reader.readLine()) != null) {
+				String[] lineSplit = linija.split("\\|");
+				int id = Integer.parseInt(lineSplit[0]);
+				ModelAutomobila model = ModelAutomobila.values()[Integer.parseInt(lineSplit[1])];
+				ProizvodjacAutomobila proizvodjac = ProizvodjacAutomobila.values()[Integer.parseInt(lineSplit[2])];
+				String godinaProizvodnje = lineSplit[3];
+				String brRegistarskeOznake = lineSplit[4];
+				VrstaTaksiVozila vrstaTaksiVozila = VrstaTaksiVozila.values()[Integer.parseInt(lineSplit[5])];
+				
+				
+				Automobil automobil = new Automobil(id, model, proizvodjac, godinaProizvodnje, brRegistarskeOznake, vrstaTaksiVozila);
+				automobili.add(automobil);
+			} 
+			reader.close();
+		} catch (IOException e) {
+			System.out.println("Greska prilikom citanja automobila iz datoteke");
+		}
+	}
+	
+	public void snimiAutomobile() {
+		
+		try {
+			File file = new File("src/files/automobili.txt");
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			String sadrzaj = "";
+			for (Automobil automobil : automobili) {
+				sadrzaj += automobil.getId() + "|" + automobil.getModel().ordinal() + "|" 
+						+ automobil.getProizvodjac().ordinal() + "|" + automobil.getGodinaProizvodnje() + "|"
+						+ automobil.getBrRegistarskeOznake() + "|" + automobil.getVrstaTaksiVozila().ordinal() + "\n";
 			}
 			
 			writer.write(sadrzaj);
