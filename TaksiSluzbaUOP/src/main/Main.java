@@ -3,11 +3,14 @@ package main;
 import enums.ModelAutomobila;
 import enums.Pol;
 import enums.ProizvodjacAutomobila;
+import enums.StatusVoznje;
 import enums.TelefonskaOdeljenja;
 import enums.VrstaTaksiVozila;
 import pojo.Automobil;
 import pojo.Dispecer;
 import pojo.Musterija;
+import pojo.Vozac;
+import pojo.Voznja;
 import util.RadSaDatotekama;
 
 public class Main {
@@ -44,6 +47,26 @@ public class Main {
 		rsd.dodajAutomobil(testAutomobil);
 		rsd.snimiAutomobile();
 		System.out.println(testAutomobil);
+		System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		rsd.ucitajVozace();
+		System.out.println("Ucitani vozaci: ");
+		ispisiVozace(rsd);
+		System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("Dodavanje vozaca: ");
+		Vozac testVozac = new Vozac(2, "pera", "pera123", "Petar", "Petrovic", "1508995181921", "Zrenjanin bb",Pol.MUSKI, "0665323123", 90000.0, "br 26", testAutomobil, false);
+		rsd.dodajVozaca(testVozac);
+		rsd.snimiVozace();
+		System.out.println(testVozac);
+		System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		rsd.ucitajVoznje();
+		System.out.println("Ucitane voznje: ");
+		ispisiVoznje(rsd);
+		System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("Dodavanje voznje: ");
+		Voznja testVoznja = new Voznja(2, "22/4/2021", "15:03", "Boska Buhe 10A", "Novi Sad Strand", testMusterija, testVozac, "0.2", "7 min", StatusVoznje.DODELJENA);
+		rsd.dodajVoznju(testVoznja);
+		rsd.snimiVoznje();
+		System.out.println(testVoznja);
 	}
 	
 	public static void ispisiDispecere(RadSaDatotekama radSaDatotekama) {
@@ -61,6 +84,18 @@ public class Main {
 	public static void ispisiAutomobile(RadSaDatotekama radSaDatotekama) {
 		for (Automobil automobil : radSaDatotekama.getAutomobili()) {
 			System.out.println(automobil);
+		}
+	}
+	
+	public static void ispisiVozace(RadSaDatotekama radSaDatotekama) {
+		for (Vozac vozac : radSaDatotekama.getVozaci()) {
+			System.out.println(vozac);
+		}
+	}
+	
+	public static void ispisiVoznje(RadSaDatotekama radSaDatotekama) {
+		for (Voznja voznja : radSaDatotekama.getVoznje()) {
+			System.out.println(voznja);
 		}
 	}
 

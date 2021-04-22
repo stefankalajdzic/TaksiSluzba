@@ -1,0 +1,2 @@
+1|kalaj|bariton123|Stefan|Kalajdzic|52115215225|Brcko bb|1|0650722922|90000.0|br25|1|false
+2|pera|pera123|Petar|Petrovic|1508995181921|Zrenjanin bb|0|0665323123|90000.0|br 26|3|false

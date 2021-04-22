@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import enums.ModelAutomobila;
 import enums.Pol;
 import enums.ProizvodjacAutomobila;
+import enums.StatusVoznje;
 import enums.TelefonskaOdeljenja;
 import enums.VrstaTaksiVozila;
 import pojo.Automobil;
@@ -44,6 +45,14 @@ public class RadSaDatotekama {
 
 	public void setVozaci(ArrayList<Vozac> vozaci) {
 		this.vozaci = vozaci;
+	}
+	
+	public void dodajVozaca(Vozac vozac) {
+		this.vozaci.add(vozac);
+	}
+	
+	public void obrisiVozaca(Vozac vozac) {
+		this.vozaci.remove(vozac);
 	}
 
 	public ArrayList<Musterija> getMusterije() {
@@ -108,6 +117,14 @@ public class RadSaDatotekama {
 
 	public void setVoznje(ArrayList<Voznja> voznje) {
 		this.voznje = voznje;
+	}
+	
+	public void dodajVoznju(Voznja voznja) {
+		this.voznje.add(voznja);
+	}
+	
+	public void obrisiVoznju(Voznja voznja) {
+		this.voznje.remove(voznja);
 	}
 	
 	public void ucitajDispecere(){
@@ -253,5 +270,111 @@ public class RadSaDatotekama {
 		}
 	}
 	
+	public void ucitajVozace(){
+			
+			try {
+				File file = new File("src/files/vozaci.txt");
+				BufferedReader reader = new BufferedReader(new FileReader(file));
+				String linija = null;
+				while((linija = reader.readLine()) != null) {
+					String[] lineSplit = linija.split("\\|");
+					int id = Integer.parseInt(lineSplit[0]);
+					String korisnickoIme = lineSplit[1];
+					String lozinka = lineSplit[2];
+					String ime = lineSplit[3];
+					String prezime = lineSplit[4];
+					String jmbg = lineSplit[5];
+					String adresa = lineSplit[6];
+					Pol pol = Pol.values()[Integer.parseInt(lineSplit[7])];
+					String brojTelefona = lineSplit[8];
+					Double plata = Double.parseDouble(lineSplit[9]);
+					String brojClanskeKarteUdruzenjaTaksista = lineSplit[10];
+					Automobil automobil = new Automobil();
+					automobil.setId(Integer.parseInt(lineSplit[11]));
+					Boolean obrisan = Boolean.parseBoolean(lineSplit[12]);
+					
+					Vozac vozac = new Vozac(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plata, brojClanskeKarteUdruzenjaTaksista, automobil, obrisan);
+					vozaci.add(vozac);
+				} 
+				reader.close();
+			} catch (IOException e) {
+				System.out.println("Greska prilikom citanja vozaca iz datoteke");
+			}
+		}
+
+	public void snimiVozace() {
+		
+		try {
+			File file = new File("src/files/vozaci.txt");
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			String sadrzaj = "";
+			for (Vozac vozac : vozaci) {
+				sadrzaj += vozac.getId() + "|" + vozac.getKorisnickoIme() + "|" + vozac.getLozinka() + "|" 
+						+ vozac.getIme() + "|" + vozac.getPrezime() + "|"
+						+ vozac.getJmbg() + "|" + vozac.getAdresa() + "|" 
+						+ vozac.getPol().ordinal() + "|" + vozac.getBrojTelefona() + "|" + vozac.getPlata() + "|" 
+						+ vozac.getBrojClanskeKarteUdruzenjaTaksista() + "|" + String.valueOf(vozac.getAutomobil().getId()) + "|"
+						+ vozac.isObrisan() + "\n";
+			}
+			
+			writer.write(sadrzaj);
+			writer.close();
+		} catch (Exception e) {
+			System.out.println("Greska prilikom upisa vozaca u fajl.");
+		}
+	}
+	
+	public void ucitajVoznje(){
+		
+		try {
+			File file = new File("src/files/voznje.txt");
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			String linija = null;
+			while((linija = reader.readLine()) != null) {
+				String[] lineSplit = linija.split("\\|");
+				int id = Integer.parseInt(lineSplit[0]);
+				String datum = lineSplit[1];
+				String vremePorudzbine = lineSplit[2];
+				String adresaPolaska = lineSplit[3];
+				String adresaDestinacije = lineSplit[4];
+				Musterija musterija = new Musterija();
+				musterija.setId(Integer.parseInt(lineSplit[5]));
+				Vozac vozac = new Vozac();
+				vozac.setId(Integer.parseInt(lineSplit[6]));
+				String brojPredjenihKilometara = lineSplit[7];
+				String trajanjeVoznje = lineSplit[8];
+				StatusVoznje status = StatusVoznje.values()[Integer.parseInt(lineSplit[9])];
+				
+				Voznja voznja = new Voznja(id, datum, vremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojPredjenihKilometara, trajanjeVoznje, status);
+				voznje.add(voznja);
+			} 
+			reader.close();
+		} catch (IOException e) {
+			System.out.println("Greska prilikom citanja voznje iz datoteke");
+		}
+	}
+
+	public void snimiVoznje() {
+		
+		try {
+			File file = new File("src/files/voznje.txt");
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			String sadrzaj = "";
+			for (Voznja voznja : voznje) {
+				sadrzaj += voznja.getId() + "|" + voznja.getDatum() + "|" 
+						+ voznja.getVremePorudzbine() + "|" 
+						+ voznja.getAdresaPolaska() + "|" + voznja.getAdresaDestinacije() + "|"
+						+ String.valueOf(voznja.getMusterija().getId()) + "|" 
+						+ String.valueOf(voznja.getVozac().getId()) + "|" 
+						+ voznja.getBrojPredjenihKilometara() + "|" + voznja.getTrajanjeVoznje() + "|" 
+						+ voznja.getStatus().ordinal() + "\n";
+			}
+			
+			writer.write(sadrzaj);
+			writer.close();
+		} catch (Exception e) {
+			System.out.println("Greska prilikom upisa voznje u fajl.");
+		}
+	}
 	
 }
