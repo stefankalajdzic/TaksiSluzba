@@ -1,6 +1,6 @@
 package enums;
 
-public enum StatusVoznje {
+public enum EStatusVoznje {
 
 	KREIRANA,
 	KREIRANA_NA_CEKANJU,

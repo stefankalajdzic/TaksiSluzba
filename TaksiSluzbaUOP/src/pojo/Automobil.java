@@ -1,17 +1,17 @@
 package pojo;
 
-import enums.ModelAutomobila;
-import enums.ProizvodjacAutomobila;
-import enums.VrstaTaksiVozila;
+import enums.EModelAutomobila;
+import enums.EProizvodjacAutomobila;
+import enums.EVrstaTaksiVozila;
 
 public class Automobil {
 
 	private int id;
-	private ModelAutomobila model;
-	private ProizvodjacAutomobila proizvodjac;
+	private EModelAutomobila model;
+	private EProizvodjacAutomobila proizvodjac;
 	private String godinaProizvodnje;
 	private String brRegistarskeOznake;
-	private VrstaTaksiVozila vrstaTaksiVozila;
+	private EVrstaTaksiVozila vrstaTaksiVozila;
 	
 	public Automobil() {
 		this.id = 0;
@@ -22,8 +22,8 @@ public class Automobil {
 		this.vrstaTaksiVozila = null;
 	}
 
-	public Automobil(int id, ModelAutomobila model, ProizvodjacAutomobila proizvodjac, String godinaProizvodnje,
-			String brRegistarskeOznake, VrstaTaksiVozila vrstaTaksiVozila) {
+	public Automobil(int id, EModelAutomobila model, EProizvodjacAutomobila proizvodjac, String godinaProizvodnje,
+			String brRegistarskeOznake, EVrstaTaksiVozila vrstaTaksiVozila) {
 		super();
 		this.id = id;
 		this.model = model;
@@ -41,19 +41,19 @@ public class Automobil {
 		this.id = id;
 	}
 
-	public ModelAutomobila getModel() {
+	public EModelAutomobila getModel() {
 		return model;
 	}
 
-	public void setModel(ModelAutomobila model) {
+	public void setModel(EModelAutomobila model) {
 		this.model = model;
 	}
 
-	public ProizvodjacAutomobila getProizvodjac() {
+	public EProizvodjacAutomobila getProizvodjac() {
 		return proizvodjac;
 	}
 
-	public void setProizvodjac(ProizvodjacAutomobila proizvodjac) {
+	public void setProizvodjac(EProizvodjacAutomobila proizvodjac) {
 		this.proizvodjac = proizvodjac;
 	}
 
@@ -73,11 +73,11 @@ public class Automobil {
 		this.brRegistarskeOznake = brRegistarskeOznake;
 	}
 
-	public VrstaTaksiVozila getVrstaTaksiVozila() {
+	public EVrstaTaksiVozila getVrstaTaksiVozila() {
 		return vrstaTaksiVozila;
 	}
 
-	public void setVrstaTaksiVozila(VrstaTaksiVozila vrstaTaksiVozila) {
+	public void setVrstaTaksiVozila(EVrstaTaksiVozila vrstaTaksiVozila) {
 		this.vrstaTaksiVozila = vrstaTaksiVozila;
 	}
 

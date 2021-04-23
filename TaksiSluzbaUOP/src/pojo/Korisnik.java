@@ -1,6 +1,6 @@
 package pojo;
 
-import enums.Pol;
+import enums.EPol;
 
 public abstract class Korisnik {
 
@@ -12,7 +12,7 @@ public abstract class Korisnik {
 	protected String prezime;
 	protected String jmbg;
 	protected String adresa;
-	protected Pol pol;
+	protected EPol pol;
 	protected String brojTelefona;
 	
 	public Korisnik() {
@@ -28,7 +28,7 @@ public abstract class Korisnik {
 	}
 
 	public Korisnik(int id, String korisnickoIme, String lozinka, String ime, String prezime, String jmbg,
-			String adresa, Pol pol, String brojTelefona) {
+			String adresa, EPol pol, String brojTelefona) {
 		super();
 		this.id = id;
 		this.korisnickoIme = korisnickoIme;
@@ -97,11 +97,11 @@ public abstract class Korisnik {
 		this.adresa = adresa;
 	}
 
-	public Pol getPol() {
+	public EPol getPol() {
 		return pol;
 	}
 
-	public void setPol(Pol pol) {
+	public void setPol(EPol pol) {
 		this.pol = pol;
 	}
 

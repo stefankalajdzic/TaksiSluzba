@@ -1,13 +1,13 @@
 package pojo;
 
-import enums.Pol;
-import enums.TelefonskaOdeljenja;
+import enums.EPol;
+import enums.ETelefonskaOdeljenja;
 
 public class Dispecer extends Korisnik {
 
 	private double plata;
 	private String brojTelefonskeLinije;
-	private TelefonskaOdeljenja telefonskaOdeljenja;
+	private ETelefonskaOdeljenja telefonskaOdeljenja;
 	
 	public Dispecer() {
 		this.plata = 0;
@@ -16,8 +16,8 @@ public class Dispecer extends Korisnik {
 	}
 
 	public Dispecer(int id, String korisnickoIme, String lozinka, String ime, String prezime, String jmbg,
-			String adresa, Pol pol, String brojTelefona, double plata, String brojTelefonskeLinije,
-			TelefonskaOdeljenja telefonskaOdeljenja) {
+			String adresa, EPol pol, String brojTelefona, double plata, String brojTelefonskeLinije,
+			ETelefonskaOdeljenja telefonskaOdeljenja) {
 		super(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 		this.plata = plata;
 		this.brojTelefonskeLinije = brojTelefonskeLinije;
@@ -40,11 +40,11 @@ public class Dispecer extends Korisnik {
 		this.brojTelefonskeLinije = brojTelefonskeLinije;
 	}
 
-	public TelefonskaOdeljenja getTelefonskaOdeljenja() {
+	public ETelefonskaOdeljenja getTelefonskaOdeljenja() {
 		return telefonskaOdeljenja;
 	}
 
-	public void setTelefonskaOdeljenja(TelefonskaOdeljenja telefonskaOdeljenja) {
+	public void setTelefonskaOdeljenja(ETelefonskaOdeljenja telefonskaOdeljenja) {
 		this.telefonskaOdeljenja = telefonskaOdeljenja;
 	}
 

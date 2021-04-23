@@ -1,6 +1,6 @@
 package enums;
 
-public enum Pol {
+public enum EPol {
 
 	MUSKI,
 	ZENSKI

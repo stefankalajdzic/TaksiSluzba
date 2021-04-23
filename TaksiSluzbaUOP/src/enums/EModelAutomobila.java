@@ -1,6 +1,6 @@
 package enums;
 
-public enum ModelAutomobila {
+public enum EModelAutomobila {
 
 	A3,
 	GOLF,

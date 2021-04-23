@@ -1,6 +1,6 @@
 package pojo;
 
-import enums.Pol;
+import enums.EPol;
 
 public class Vozac extends Korisnik {
 	
@@ -17,7 +17,7 @@ public class Vozac extends Korisnik {
 	}
 
 	public Vozac(int id, String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa,
-			Pol pol, String brojTelefona, double plata, String brojClanskeKarteUdruzenjaTaksista, Automobil automobil, boolean obrisan) {
+			EPol pol, String brojTelefona, double plata, String brojClanskeKarteUdruzenjaTaksista, Automobil automobil, boolean obrisan) {
 		super(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 		this.plata = plata;
 		this.brojClanskeKarteUdruzenjaTaksista = brojClanskeKarteUdruzenjaTaksista;

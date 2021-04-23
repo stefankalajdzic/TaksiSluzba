@@ -1,6 +1,6 @@
 package enums;
 
-public enum ProizvodjacAutomobila {
+public enum EProizvodjacAutomobila {
 
 	AUDI, 
 	VOLKSWAGEN, 

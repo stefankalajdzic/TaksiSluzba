@@ -1,6 +1,6 @@
 package pojo;
 
-import enums.Pol;
+import enums.EPol;
 
 public class Musterija extends Korisnik {
 	
@@ -9,7 +9,7 @@ public class Musterija extends Korisnik {
 	}
 
 	public Musterija(int id, String korisnickoIme, String lozinka, String ime, String prezime, String jmbg,
-			String adresa, Pol pol, String brojTelefona) {
+			String adresa, EPol pol, String brojTelefona) {
 		super(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
 		// TODO Auto-generated constructor stub
 	}

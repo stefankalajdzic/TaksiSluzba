@@ -1,6 +1,6 @@
 package pojo;
 
-import enums.StatusVoznje;
+import enums.EStatusVoznje;
 
 public class Voznja {
 
@@ -13,7 +13,7 @@ public class Voznja {
 	private Vozac vozac;
 	private String brojPredjenihKilometara;
 	private String trajanjeVoznje;
-	private StatusVoznje status;
+	private EStatusVoznje status;
 	
 	public Voznja() {
 		this.id = 0;
@@ -30,7 +30,7 @@ public class Voznja {
 
 	public Voznja(int id, String datum, String vremePorudzbine, String adresaPolaska, String adresaDestinacije,
 			Musterija musterija, Vozac vozac, String brojPredjenihKilometara, String trajanjeVoznje,
-			StatusVoznje status) {
+			EStatusVoznje status) {
 		super();
 		this.id = id;
 		this.datum = datum;
@@ -116,11 +116,11 @@ public class Voznja {
 		this.trajanjeVoznje = trajanjeVoznje;
 	}
 
-	public StatusVoznje getStatus() {
+	public EStatusVoznje getStatus() {
 		return status;
 	}
 
-	public void setStatus(StatusVoznje status) {
+	public void setStatus(EStatusVoznje status) {
 		this.status = status;
 	}
 	

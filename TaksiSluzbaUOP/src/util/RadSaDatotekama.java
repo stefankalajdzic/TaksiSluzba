@@ -8,12 +8,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import enums.ModelAutomobila;
-import enums.Pol;
-import enums.ProizvodjacAutomobila;
-import enums.StatusVoznje;
-import enums.TelefonskaOdeljenja;
-import enums.VrstaTaksiVozila;
+import enums.EModelAutomobila;
+import enums.EPol;
+import enums.EProizvodjacAutomobila;
+import enums.EStatusVoznje;
+import enums.ETelefonskaOdeljenja;
+import enums.EVrstaTaksiVozila;
 import pojo.Automobil;
 import pojo.Dispecer;
 import pojo.Musterija;
@@ -110,6 +110,14 @@ public class RadSaDatotekama {
 	public void setTaksiSluzbe(ArrayList<TaksiSluzba> taksiSluzbe) {
 		this.taksiSluzbe = taksiSluzbe;
 	}
+	
+	public void dodajTaksiSluzbu(TaksiSluzba taksiSluzba) {
+		this.taksiSluzbe.add(taksiSluzba);
+	}
+	
+	public void obrisiTaksiSluzbu(TaksiSluzba taksiSluzba) {
+		this.taksiSluzbe.remove(taksiSluzba);
+	}
 
 	public ArrayList<Voznja> getVoznje() {
 		return voznje;
@@ -142,11 +150,11 @@ public class RadSaDatotekama {
 				String prezime = lineSplit[4];
 				String jmbg = lineSplit[5];
 				String adresa = lineSplit[6];
-				Pol pol = Pol.values()[Integer.parseInt(lineSplit[7])];
+				EPol pol = EPol.values()[Integer.parseInt(lineSplit[7])];
 				String brojTelefona = lineSplit[8];
 				double plata = Double.parseDouble(lineSplit[9]);
 				String brojTelefonskeLinije = lineSplit[10];
-				TelefonskaOdeljenja telefonskaOdeljenja = TelefonskaOdeljenja.values()[Integer.parseInt(lineSplit[11])];
+				ETelefonskaOdeljenja telefonskaOdeljenja = ETelefonskaOdeljenja.values()[Integer.parseInt(lineSplit[11])];
 				
 				Dispecer dispecer = new Dispecer(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plata, brojTelefonskeLinije, telefonskaOdeljenja);
 				dispeceri.add(dispecer);
@@ -194,7 +202,7 @@ public class RadSaDatotekama {
 				String prezime = lineSplit[4];
 				String jmbg = lineSplit[5];
 				String adresa = lineSplit[6];
-				Pol pol = Pol.values()[Integer.parseInt(lineSplit[7])];
+				EPol pol = EPol.values()[Integer.parseInt(lineSplit[7])];
 				String brojTelefona = lineSplit[8];
 				
 				Musterija musterija = new Musterija(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
@@ -235,11 +243,11 @@ public class RadSaDatotekama {
 			while((linija = reader.readLine()) != null) {
 				String[] lineSplit = linija.split("\\|");
 				int id = Integer.parseInt(lineSplit[0]);
-				ModelAutomobila model = ModelAutomobila.values()[Integer.parseInt(lineSplit[1])];
-				ProizvodjacAutomobila proizvodjac = ProizvodjacAutomobila.values()[Integer.parseInt(lineSplit[2])];
+				EModelAutomobila model = EModelAutomobila.values()[Integer.parseInt(lineSplit[1])];
+				EProizvodjacAutomobila proizvodjac = EProizvodjacAutomobila.values()[Integer.parseInt(lineSplit[2])];
 				String godinaProizvodnje = lineSplit[3];
 				String brRegistarskeOznake = lineSplit[4];
-				VrstaTaksiVozila vrstaTaksiVozila = VrstaTaksiVozila.values()[Integer.parseInt(lineSplit[5])];
+				EVrstaTaksiVozila vrstaTaksiVozila = EVrstaTaksiVozila.values()[Integer.parseInt(lineSplit[5])];
 				
 				
 				Automobil automobil = new Automobil(id, model, proizvodjac, godinaProizvodnje, brRegistarskeOznake, vrstaTaksiVozila);
@@ -285,7 +293,7 @@ public class RadSaDatotekama {
 					String prezime = lineSplit[4];
 					String jmbg = lineSplit[5];
 					String adresa = lineSplit[6];
-					Pol pol = Pol.values()[Integer.parseInt(lineSplit[7])];
+					EPol pol = EPol.values()[Integer.parseInt(lineSplit[7])];
 					String brojTelefona = lineSplit[8];
 					Double plata = Double.parseDouble(lineSplit[9]);
 					String brojClanskeKarteUdruzenjaTaksista = lineSplit[10];
@@ -343,7 +351,7 @@ public class RadSaDatotekama {
 				vozac.setId(Integer.parseInt(lineSplit[6]));
 				String brojPredjenihKilometara = lineSplit[7];
 				String trajanjeVoznje = lineSplit[8];
-				StatusVoznje status = StatusVoznje.values()[Integer.parseInt(lineSplit[9])];
+				EStatusVoznje status = EStatusVoznje.values()[Integer.parseInt(lineSplit[9])];
 				
 				Voznja voznja = new Voznja(id, datum, vremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojPredjenihKilometara, trajanjeVoznje, status);
 				voznje.add(voznja);
@@ -376,5 +384,46 @@ public class RadSaDatotekama {
 			System.out.println("Greska prilikom upisa voznje u fajl.");
 		}
 	}
+	
+	public void ucitajTaksiSluzbe(){
+		
+		try {
+			File file = new File("src/files/taksiSluzbe.txt");
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			String linija = null;
+			while((linija = reader.readLine()) != null) {
+				String[] lineSplit = linija.split("\\|");
+				int pib = Integer.parseInt(lineSplit[0]);
+				String naziv = lineSplit[1];
+				String adresa = lineSplit[2];
+				Double cenaStartaVoznje = Double.parseDouble(lineSplit[3]);
+				Double cenaPoKilometru = Double.parseDouble(lineSplit[4]);
+				TaksiSluzba taksiSluzba = new TaksiSluzba(pib, naziv, adresa, cenaStartaVoznje, cenaPoKilometru);
+				taksiSluzbe.add(taksiSluzba);
+			} 
+			reader.close();
+		} catch (IOException e) {
+			System.out.println("Greska prilikom citanja taksiSluzbe iz datoteke");
+		}
+	}
+	
+	public void snimiTaksiSluzbe() {
+		
+		try {
+			File file = new File("src/files/taksiSluzbe.txt");
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			String sadrzaj = "";
+			for (TaksiSluzba taksiSluzba : taksiSluzbe) {
+				sadrzaj += taksiSluzba.getPib() + "|" + taksiSluzba.getNaziv() + "|" + taksiSluzba.getAdresa() + "|" 
+						+ taksiSluzba.getCenaStartaVoznje() + "|" + taksiSluzba.getCenaPoKilometru() + "\n";
+			}
+			
+			writer.write(sadrzaj);
+			writer.close();
+		} catch (Exception e) {
+			System.out.println("Greska prilikom upisa taksiSluzbe u fajl.");
+		}
+	}
+
 	
 }

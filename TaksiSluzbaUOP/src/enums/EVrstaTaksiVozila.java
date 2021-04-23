@@ -1,6 +1,6 @@
 package enums;
 
-public enum VrstaTaksiVozila {
+public enum EVrstaTaksiVozila {
 
 	PUTNICKI_AUTOMOBIL,
 	KOMBI
