@@ -1,2 +1,1 @@
-1|sike|sike123|Milos|Sikimic|52115215225|Ljubinje bb|0|065521252|100000.0|5|1
-2|kalaj|kalaj123|Stefan|Kalajdzic|52115215225|Brcko bb|1|065072292|100000.0|10|1
+1|sike|sike123|Milos|Sikimic|52115215225|Ljubinje bb|0|065521252|100000.0|5|1|false

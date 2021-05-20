@@ -14,6 +14,7 @@ public abstract class Korisnik {
 	protected String adresa;
 	protected EPol pol;
 	protected String brojTelefona;
+	protected boolean obrisan;
 	
 	public Korisnik() {
 		this.id = 0;
@@ -25,10 +26,13 @@ public abstract class Korisnik {
 		this.adresa = "";
 		this.pol = null;
 		this.brojTelefona = "";
+		this.obrisan = false;
 	}
 
+
+
 	public Korisnik(int id, String korisnickoIme, String lozinka, String ime, String prezime, String jmbg,
-			String adresa, EPol pol, String brojTelefona) {
+			String adresa, EPol pol, String brojTelefona, boolean obrisan) {
 		super();
 		this.id = id;
 		this.korisnickoIme = korisnickoIme;
@@ -39,86 +43,141 @@ public abstract class Korisnik {
 		this.adresa = adresa;
 		this.pol = pol;
 		this.brojTelefona = brojTelefona;
+		this.obrisan = obrisan;
 	}
+
+
+
 
 	public int getId() {
 		return id;
 	}
 
+
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
 
 	public String getKorisnickoIme() {
 		return korisnickoIme;
 	}
 
+
+
 	public void setKorisnickoIme(String korisnickoIme) {
 		this.korisnickoIme = korisnickoIme;
 	}
+
+
 
 	public String getLozinka() {
 		return lozinka;
 	}
 
+
+
 	public void setLozinka(String lozinka) {
 		this.lozinka = lozinka;
 	}
+
+
 
 	public String getIme() {
 		return ime;
 	}
 
+
+
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
+
+
 
 	public String getPrezime() {
 		return prezime;
 	}
 
+
+
 	public void setPrezime(String prezime) {
 		this.prezime = prezime;
 	}
+
+
 
 	public String getJmbg() {
 		return jmbg;
 	}
 
+
+
 	public void setJmbg(String jmbg) {
 		this.jmbg = jmbg;
 	}
+
+
 
 	public String getAdresa() {
 		return adresa;
 	}
 
+
+
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
+
+
 
 	public EPol getPol() {
 		return pol;
 	}
 
+
+
 	public void setPol(EPol pol) {
 		this.pol = pol;
 	}
+
+
 
 	public String getBrojTelefona() {
 		return brojTelefona;
 	}
 
+
+
 	public void setBrojTelefona(String brojTelefona) {
 		this.brojTelefona = brojTelefona;
 	}
+
+
+
+	public boolean isObrisan() {
+		return obrisan;
+	}
+
+
+
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "Korisnik [id=" + id + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", ime=" + ime
 				+ ", prezime=" + prezime + ", jmbg=" + jmbg + ", adresa=" + adresa + ", pol=" + pol + ", brojTelefona="
-				+ brojTelefona + "]";
+				+ brojTelefona + ", obrisan=" + obrisan + "]";
 	}
+
+
+
 	
 	
 }

@@ -17,12 +17,14 @@ public class Dispecer extends Korisnik {
 
 	public Dispecer(int id, String korisnickoIme, String lozinka, String ime, String prezime, String jmbg,
 			String adresa, EPol pol, String brojTelefona, double plata, String brojTelefonskeLinije,
-			ETelefonskaOdeljenja telefonskaOdeljenja) {
-		super(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
+			ETelefonskaOdeljenja telefonskaOdeljenja, boolean obrisan) {
+		super(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan);
 		this.plata = plata;
 		this.brojTelefonskeLinije = brojTelefonskeLinije;
 		this.telefonskaOdeljenja = telefonskaOdeljenja;
 	}
+
+	
 
 	public double getPlata() {
 		return plata;
@@ -50,11 +52,13 @@ public class Dispecer extends Korisnik {
 
 	@Override
 	public String toString() {
-		return "Dispecer [id=" + id + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka
+		return "Dispecer [plata=" + plata + ", brojTelefonskeLinije=" + brojTelefonskeLinije + ", telefonskaOdeljenja="
+				+ telefonskaOdeljenja + ", id=" + id + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka
 				+ ", ime=" + ime + ", prezime=" + prezime + ", jmbg=" + jmbg + ", adresa=" + adresa + ", pol=" + pol
-				+ ", brojTelefona=" + brojTelefona + " plata=" + plata + ", brojTelefonskeLinije=" + brojTelefonskeLinije
-				+ ", telefonskaOdeljenja=" + "telefonskaOdeljenja]";
+				+ ", brojTelefona=" + brojTelefona + ", obrisan=" + obrisan + "]";
 	}
+
+
 	
 	
 }

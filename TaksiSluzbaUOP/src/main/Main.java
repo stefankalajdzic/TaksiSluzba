@@ -24,7 +24,7 @@ public class Main {
 		ispisiDispecere(rsd);
 		System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------");
 		System.out.println("Dodavanje dispecera: ");
-		Dispecer testDispecer = new Dispecer(3, "tanja", "tanja123", "Tanja", "Kojic", "12515251525125", "Brcko bb", EPol.ZENSKI, "065123456", 300000.0, "25", ETelefonskaOdeljenja.ODELJENJE_ZA_REKLAMACIJE);
+		Dispecer testDispecer = new Dispecer(3, "tanja", "tanja123", "Tanja", "Kojic", "12515251525125", "Brcko bb", EPol.ZENSKI, "065123456", 300000.0, "25", ETelefonskaOdeljenja.ODELJENJE_ZA_REKLAMACIJE, false);
 		rsd.dodajDispecera(testDispecer);
 		rsd.snimiDispecere();
 		System.out.println(testDispecer);
@@ -34,7 +34,7 @@ public class Main {
 		ispisiMusterije(rsd);
 		System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------");
 		System.out.println("Dodavanje musterije: ");
-		Musterija testMusterija = new Musterija(2, "Mare", "mare123", "Marko", "Markovic", "15210521152", "Alekse Santica 5", EPol.MUSKI, "065424141");
+		Musterija testMusterija = new Musterija(2, "Mare", "mare123", "Marko", "Markovic", "15210521152", "Alekse Santica 5", EPol.MUSKI, "065424141", false);
 		rsd.dodajMusteriju(testMusterija);
 		rsd.snimiMusterije();
 		System.out.println(testMusterija);
@@ -44,7 +44,7 @@ public class Main {
 		ispisiAutomobile(rsd);
 		System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------");
 		System.out.println("Dodavanje automobila: ");
-		Automobil testAutomobil = new Automobil(3, EModelAutomobila.A3 ,EProizvodjacAutomobila.AUDI, "2016", "NS-000 NI", EVrstaTaksiVozila.PUTNICKI_AUTOMOBIL);
+		Automobil testAutomobil = new Automobil(3, EModelAutomobila.A3, EProizvodjacAutomobila.AUDI, "2016", "NS-000 NI", EVrstaTaksiVozila.PUTNICKI_AUTOMOBIL);
 		rsd.dodajAutomobil(testAutomobil);
 		rsd.snimiAutomobile();
 		System.out.println(testAutomobil);
@@ -56,7 +56,15 @@ public class Main {
 		System.out.println("Dodavanje vozaca: ");
 		Vozac testVozac = new Vozac(2, "pera", "pera123", "Petar", "Petrovic", "1508995181921", "Zrenjanin bb",EPol.MUSKI, "0665323123", 90000.0, "br 26", testAutomobil, false);
 		rsd.dodajVozaca(testVozac);
+		
+		
 		rsd.snimiVozace();
+		
+
+		testVozac.setAdresa("Nova Adresa");
+		rsd.izmeniVozaca(testVozac);
+		
+//		rsd.snimiVozace();
 		System.out.println(testVozac);
 		System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------");
 		rsd.ucitajVoznje();

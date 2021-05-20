@@ -1,1 +1,1 @@
-1|kalaj|bariton123|Stefan|Kalajdzic|52115215225|Brcko bb|1|0650722922|90000.0|br25|1|false
+1|kalaj|bariton123|Nova Adresa|Petrovic|52115215225|Brcko bb|1|0650722922|90000.0|br25|1|false

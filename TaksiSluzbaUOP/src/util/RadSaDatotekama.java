@@ -54,7 +54,29 @@ public class RadSaDatotekama {
 	public void obrisiVozaca(Vozac vozac) {
 		this.vozaci.remove(vozac);
 	}
+	
+	public Vozac nadjiVozaca(int id) {
+		for (Vozac vozac : vozaci) {
+			if (vozac.getId() == id) {
+				return vozac;
+			}
+		}
+		return null;
+	}
 
+	public Vozac izmeniVozaca(Vozac v) {
+		for(Vozac vozac: vozaci) {
+			if(vozac.getId()==v.getId()) {
+				vozac.setIme(v.getIme());
+				vozac.setPrezime(v.getPrezime());
+			}
+			else {
+				System.out.println("Ne postoji taj Vozac");
+			}
+		}
+		return v;
+	}
+	
 	public ArrayList<Musterija> getMusterije() {
 		return musterije;
 	}
@@ -135,6 +157,16 @@ public class RadSaDatotekama {
 		this.voznje.remove(voznja);
 	}
 	
+	public Musterija login(String korisnickoIme, String lozinka) {
+		for (Musterija musterija : musterije) {
+			if(musterija.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) && 
+					musterija.getLozinka().equals(lozinka) && !musterija.isObrisan()) {
+				return musterija;
+			}
+		}
+		return null;
+	}
+	
 	public void ucitajDispecere(){
 		
 		try {
@@ -155,8 +187,9 @@ public class RadSaDatotekama {
 				double plata = Double.parseDouble(lineSplit[9]);
 				String brojTelefonskeLinije = lineSplit[10];
 				ETelefonskaOdeljenja telefonskaOdeljenja = ETelefonskaOdeljenja.values()[Integer.parseInt(lineSplit[11])];
+				Boolean obrisan = Boolean.parseBoolean(lineSplit[12]);
 				
-				Dispecer dispecer = new Dispecer(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plata, brojTelefonskeLinije, telefonskaOdeljenja);
+				Dispecer dispecer = new Dispecer(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plata, brojTelefonskeLinije, telefonskaOdeljenja, obrisan);
 				dispeceri.add(dispecer);
 			} 
 			reader.close();
@@ -177,7 +210,7 @@ public class RadSaDatotekama {
 						+ dispecer.getJmbg() + "|" + dispecer.getAdresa() + "|" 
 						+ dispecer.getPol().ordinal() + "|" + dispecer.getBrojTelefona() + "|" 
 						+ dispecer.getPlata() + "|" + dispecer.getBrojTelefonskeLinije() + "|" 
-						+ dispecer.getTelefonskaOdeljenja().ordinal() + "\n";
+						+ dispecer.getTelefonskaOdeljenja().ordinal() + "|" + dispecer.isObrisan() + "\n";
 			}
 			
 			writer.write(sadrzaj);
@@ -204,8 +237,9 @@ public class RadSaDatotekama {
 				String adresa = lineSplit[6];
 				EPol pol = EPol.values()[Integer.parseInt(lineSplit[7])];
 				String brojTelefona = lineSplit[8];
+				Boolean obrisan = Boolean.parseBoolean(lineSplit[9]);
 				
-				Musterija musterija = new Musterija(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona);
+				Musterija musterija = new Musterija(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan);
 				musterije.add(musterija);
 			} 
 			reader.close();
@@ -224,7 +258,7 @@ public class RadSaDatotekama {
 				sadrzaj += musterija.getId() + "|" + musterija.getKorisnickoIme() + "|" + musterija.getLozinka() + "|" 
 						+ musterija.getIme() + "|" + musterija.getPrezime() + "|"
 						+ musterija.getJmbg() + "|" + musterija.getAdresa() + "|" 
-						+ musterija.getPol().ordinal() + "|" + musterija.getBrojTelefona() + "\n";
+						+ musterija.getPol().ordinal() + "|" + musterija.getBrojTelefona() + "|" + musterija.isObrisan() + "\n";
 			}
 			
 			writer.write(sadrzaj);
