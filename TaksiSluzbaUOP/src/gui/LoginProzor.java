@@ -11,7 +11,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
+import pojo.Dispecer;
 import pojo.Musterija;
+import pojo.Vozac;
 import util.RadSaDatotekama;
 
 public class LoginProzor extends JFrame {
@@ -34,9 +36,11 @@ public class LoginProzor extends JFrame {
 		setTitle("Prijava");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		initGUI();
 		initActions();
 		pack();
+		getRootPane().setDefaultButton(btnOk);
 	}
 	
 	public void initGUI() {
@@ -71,25 +75,59 @@ public class LoginProzor extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String korisnickoIme = txtKorisnickoIme.getText().trim();
-				String sifra = new String(pfLozinka.getPassword()).trim();
+				String uneto_korisnicko = txtKorisnickoIme.getText().trim();
+				String uneta_sifra = new String(pfLozinka.getPassword()).trim();
 				
-				if(korisnickoIme.equals("") || sifra.equals("")) {
-					JOptionPane.showMessageDialog(null, "Niste uneli sve podatke za prijavu.",
-							"Greska", JOptionPane.WARNING_MESSAGE);
+				int rez = 0;
+				for(Vozac a : rsd.getVozaci()) {
+					if(a.getKorisnickoIme().equalsIgnoreCase(uneto_korisnicko)) {
+						rez += 1;
+					}
+				}for(Musterija a : rsd.getMusterije()) {
+					if(a.getKorisnickoIme().equalsIgnoreCase(uneto_korisnicko)) {
+						rez += 1;
+					}
+				}for(Dispecer a : rsd.getDispeceri()) {
+					if(a.getKorisnickoIme().equalsIgnoreCase(uneto_korisnicko)) {
+						rez += 1;
+					}
+				}
+
+				if(rez == 0) {
+					JOptionPane.showMessageDialog(null, "Uneseni podaci se ne podudaraju ni sa jednim korisnikom.", "Greska prilikom unosa!", JOptionPane.WARNING_MESSAGE);
+				}
+				if(uneto_korisnicko.equals("") || uneta_sifra.equals("")) {
+					JOptionPane.showMessageDialog(null, "Morate popuniti sva polja.", "Greska prilikom unosa!", JOptionPane.WARNING_MESSAGE);
+
+					
 				}else {
-					Musterija prijavljeni = rsd.login(korisnickoIme, sifra);
-					if(prijavljeni == null) {
-						JOptionPane.showMessageDialog(null, "Pogresni login podaci.",
-								"Greska", JOptionPane.WARNING_MESSAGE);
-					}else {
-						System.out.println(prijavljeni);
+					for(Vozac a : rsd.getVozaci()) {
+						if(a.getKorisnickoIme().equalsIgnoreCase(uneto_korisnicko) && a.getLozinka().equals(uneta_sifra)) {
+							LoginProzor.this.dispose();
+							LoginProzor.this.setVisible(false);
+							GlavniProzorVozaci gpv = new GlavniProzorVozaci(rsd, a);
+							gpv.setVisible(true);
+						}
+					}for(Musterija m : rsd.getMusterije()) {
+						if(m.getKorisnickoIme().equalsIgnoreCase(uneto_korisnicko) && m.getLozinka().equals(uneta_sifra)) {
+							LoginProzor.this.dispose();
+							LoginProzor.this.setVisible(false);
+							GlavniProzorMusterije gpm = new GlavniProzorMusterije(rsd, m);
+							gpm.setVisible(true);
+						}
+					}for(Dispecer d : rsd.getDispeceri()) {
+						if(d.getKorisnickoIme().equalsIgnoreCase(uneto_korisnicko) && d.getLozinka().equals(uneta_sifra)) {
+							LoginProzor.this.dispose();
+							LoginProzor.this.setVisible(false);
+							GlavniProzorDispeceri gpd = new GlavniProzorDispeceri(rsd, d);
+							gpd.setVisible(true);
 					}
 				}
 			}
-		});
+		}
 		
 		
-	}
+	});
 	
+	}
 }
