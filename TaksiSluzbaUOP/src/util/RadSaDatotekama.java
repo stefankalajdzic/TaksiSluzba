@@ -157,20 +157,11 @@ public class RadSaDatotekama {
 		this.voznje.remove(voznja);
 	}
 	
-	public Musterija login(String korisnickoIme, String lozinka) {
-		for (Musterija musterija : musterije) {
-			if(musterija.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) && 
-					musterija.getLozinka().equals(lozinka) && !musterija.isObrisan()) {
-				return musterija;
-			}
-		}
-		return null;
-	}
 	
-	public void ucitajDispecere(){
+	public void ucitajDispecere(String putanja){
 		
 		try {
-			File file = new File("src/files/dispeceri.txt");
+			File file = new File(putanja);
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String linija = null;
 			while((linija = reader.readLine()) != null) {
@@ -220,10 +211,10 @@ public class RadSaDatotekama {
 		}
 	}
 	
-	public void ucitajMusterije(){
+	public void ucitajMusterije(String putanja){
 		
 		try {
-			File file = new File("src/files/musterije.txt");
+			File file = new File(putanja);
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String linija = null;
 			while((linija = reader.readLine()) != null) {
@@ -268,10 +259,10 @@ public class RadSaDatotekama {
 		}
 	}
 	
-	public void ucitajAutomobile() {
+	public void ucitajAutomobile(String putanja) {
 		
 		try {
-			File file = new File("src/files/automobili.txt");
+			File file = new File(putanja);
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String linija = null;
 			while((linija = reader.readLine()) != null) {
@@ -312,10 +303,10 @@ public class RadSaDatotekama {
 		}
 	}
 	
-	public void ucitajVozace(){
+	public void ucitajVozace(String putanja){
 			
 			try {
-				File file = new File("src/files/vozaci.txt");
+				File file = new File(putanja);
 				BufferedReader reader = new BufferedReader(new FileReader(file));
 				String linija = null;
 				while((linija = reader.readLine()) != null) {
@@ -366,10 +357,10 @@ public class RadSaDatotekama {
 		}
 	}
 	
-	public void ucitajVoznje(){
+	public void ucitajVoznje(String putanja){
 		
 		try {
-			File file = new File("src/files/voznje.txt");
+			File file = new File(putanja);
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String linija = null;
 			while((linija = reader.readLine()) != null) {
@@ -419,10 +410,10 @@ public class RadSaDatotekama {
 		}
 	}
 	
-	public void ucitajTaksiSluzbe(){
+	public void ucitajTaksiSluzbe(String putanja){
 		
 		try {
-			File file = new File("src/files/taksiSluzbe.txt");
+			File file = new File(putanja);
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String linija = null;
 			while((linija = reader.readLine()) != null) {
@@ -457,6 +448,109 @@ public class RadSaDatotekama {
 		} catch (Exception e) {
 			System.out.println("Greska prilikom upisa taksiSluzbe u fajl.");
 		}
+	}
+	
+	public Musterija login(String korisnickoIme, String lozinka) {
+		for (Musterija musterija : musterije) {
+			if(musterija.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) && 
+					musterija.getLozinka().equals(lozinka) && !musterija.isObrisan()) {
+				return musterija;
+			}
+		}
+		return null;
+	}
+	
+	
+	public Musterija NadjiMusteriju(int id) {
+		for(Musterija a : this.musterije) {
+			if (a.getId() == id) {
+				return a;
+			}
+		}
+		return null;
+	}
+	
+	public Musterija NadjiMusterijuPoKorisnickomImenu(String korisnickoIme) {
+		for(Musterija a : this.musterije) {
+			if (a.getKorisnickoIme() == korisnickoIme) {
+				return a;
+			}
+		}
+		return null;
+	}
+	
+	public Vozac NadjiVozaca(int id) {
+		for(Vozac a : this.vozaci) {
+			if (a.getId() == id) {
+				return a;
+			}
+		}
+		return null;
+	}
+	
+	public Vozac NadjiVozacaPoKorisnickomImenu(String korisnickoIme) {
+		for(Vozac a : this.vozaci) {
+			if (a.getKorisnickoIme() == korisnickoIme) {
+				return a;
+			}
+		}
+		return null;
+	}
+	
+	public Dispecer NadjiDispecera(int id) {
+		for(Dispecer a : this.dispeceri) {
+			if (a.getId() == id) {
+				return a;
+			}
+		}
+		return null;
+	}
+	
+	public Dispecer NadjiDispeceraPoKorisnickomImenu(String korisnickoIme) {
+		for(Dispecer a : this.dispeceri) {
+			if (a.getKorisnickoIme() == korisnickoIme) {
+				return a;
+			}
+		}
+		return null;
+	}
+	
+	public TaksiSluzba NadjiTaksiSluzbu(int pib) {
+		for(TaksiSluzba a : this.taksiSluzbe) {
+			if (a.getPib() == pib) {
+				return a;
+			}
+		}
+		return null;
+	}
+	
+	public Voznja NadjiVoznju(int id) {
+		for(Voznja a : this.voznje) {
+			if (a.getId() == id) {
+				return a;
+			}
+		}
+		return null;
+	}
+	
+	public Automobil NadjiAutomobil(int id) {
+		for(Automobil a : this.automobili) {
+			if (a.getId() == id) {
+				return a;
+			}
+		}
+		return null;
+	}
+	
+	
+	
+	public void snimiSve() {
+		snimiAutomobile();
+		snimiDispecere();
+		snimiMusterije();
+		snimiTaksiSluzbe();
+		snimiVozace();
+		snimiVoznje();
 	}
 
 	
