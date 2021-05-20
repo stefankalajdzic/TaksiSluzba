@@ -6,6 +6,7 @@ import enums.EProizvodjacAutomobila;
 import enums.EStatusVoznje;
 import enums.ETelefonskaOdeljenja;
 import enums.EVrstaTaksiVozila;
+import gui.LoginProzor;
 import pojo.Automobil;
 import pojo.Dispecer;
 import pojo.Musterija;
@@ -33,5 +34,8 @@ public class Main {
 		rsd.ucitajVozace(VOZACI_FAJL);
 		rsd.ucitajVoznje(VOZNJE_FAJL);
 
+		LoginProzor lp = new LoginProzor(rsd);
+		lp.setVisible(true);
+		
 	}
 }
