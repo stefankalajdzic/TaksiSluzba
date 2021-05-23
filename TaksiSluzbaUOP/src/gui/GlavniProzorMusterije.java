@@ -13,7 +13,6 @@ public class GlavniProzorMusterije extends JFrame {
 	private JMenuBar mainMenu = new JMenuBar();
 	private JMenu rezervisiVoznju = new JMenu("Rezervisi voznju");
 	private JMenuItem putemTelefonaItem = new JMenuItem("Telefonom");
-	private JMenuItem putemMailaItem = new JMenuItem("Mailom");
 	
 	private RadSaDatotekama rsd;
 	private Musterija prijavljeniKorisnik;
@@ -35,7 +34,6 @@ public class GlavniProzorMusterije extends JFrame {
 		setJMenuBar(mainMenu);
 		mainMenu.add(rezervisiVoznju);
 		rezervisiVoznju.add(putemTelefonaItem);
-		rezervisiVoznju.add(putemMailaItem);
 	}
 	
 	private void initActions() {

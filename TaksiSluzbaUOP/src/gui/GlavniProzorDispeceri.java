@@ -15,10 +15,8 @@ import util.RadSaDatotekama;
 public class GlavniProzorDispeceri extends JFrame {
 
 	private JMenuBar mainMenu = new JMenuBar();
-	private JMenu rezervisiVoznju = new JMenu("Rezervisi voznju");
-	private JMenuItem putemTelefonaItem = new JMenuItem("Telefonom");
-	private JMenuItem putemMailaItem = new JMenuItem("Mailom");
-	private JMenu DispeceriMenu = new JMenu("Dispeceri");
+	private JMenu dodeliVoznju = new JMenu("Dodeli voznju vozacu");
+	private JMenu dispeceriMenu = new JMenu("Dispeceri");
 	private JMenuItem dispeceriItem = new JMenuItem("Dispeceri");
 	
 	private RadSaDatotekama rsd;
@@ -38,11 +36,9 @@ public class GlavniProzorDispeceri extends JFrame {
 	
 	private void initMenu() {
 		setJMenuBar(mainMenu);
-		mainMenu.add(rezervisiVoznju);
-		rezervisiVoznju.add(putemTelefonaItem);
-		rezervisiVoznju.add(putemMailaItem);
-		mainMenu.add(DispeceriMenu);
-		DispeceriMenu.add(dispeceriItem);
+		mainMenu.add(dodeliVoznju);
+		mainMenu.add(dispeceriMenu);
+		dispeceriMenu.add(dispeceriItem);
 	}
 	
 	private void initActions() {

@@ -505,6 +505,16 @@ public class RadSaDatotekama {
 		return neobrisani;
 	}
 	
+	public ArrayList<Automobil> sviNeobrisaniAutomobili() {
+		ArrayList<Automobil> neobrisani = new ArrayList<Automobil>();
+		for (Automobil automobil : automobili) {
+			if(!automobil.isObrisan()) {
+				neobrisani.add(automobil);
+			}
+		}
+		return neobrisani;
+	}
+	
 	
 	
 	public Musterija NadjiMusterijuPoKorisnickomImenu(String korisnickoIme) {
@@ -579,6 +589,23 @@ public class RadSaDatotekama {
 		return null;
 	}
 	
+	public Automobil pronadjiAutomobilPoBrRegistarskeOznake(String brRegistarskeOznake) {
+		for (Automobil automobil : this.sviNeobrisaniAutomobili()) {
+			if(automobil.getBrRegistarskeOznake().equalsIgnoreCase(brRegistarskeOznake)) {
+				return automobil;
+			}
+		}
+		return null;
+	}
+	
+	public Vozac pronadjiAutomobil(Automobil id) {
+		for (Vozac vozac : this.vozaci) {
+			if(vozac.getAutomobil() == id) {
+				return vozac;
+			}
+		}
+		return null;
+	}
 	
 	
 	public void snimiSve() {
