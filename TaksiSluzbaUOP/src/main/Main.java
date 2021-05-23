@@ -1,18 +1,7 @@
 package main;
 
-import enums.EModelAutomobila;
-import enums.EPol;
-import enums.EProizvodjacAutomobila;
-import enums.EStatusVoznje;
-import enums.ETelefonskaOdeljenja;
-import enums.EVrstaTaksiVozila;
 import gui.LoginProzor;
-import pojo.Automobil;
-import pojo.Dispecer;
-import pojo.Musterija;
-import pojo.TaksiSluzba;
-import pojo.Vozac;
-import pojo.Voznja;
+
 import util.RadSaDatotekama;
 
 public class Main {

@@ -24,8 +24,6 @@ public class Dispecer extends Korisnik {
 		this.telefonskaOdeljenja = telefonskaOdeljenja;
 	}
 
-	
-
 	public double getPlata() {
 		return plata;
 	}
@@ -58,7 +56,4 @@ public class Dispecer extends Korisnik {
 				+ ", brojTelefona=" + brojTelefona + ", obrisan=" + obrisan + "]";
 	}
 
-
-	
-	
 }

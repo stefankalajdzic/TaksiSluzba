@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import enums.EModelAutomobila;
@@ -16,13 +17,15 @@ import enums.ETelefonskaOdeljenja;
 import enums.EVrstaTaksiVozila;
 import pojo.Automobil;
 import pojo.Dispecer;
+import pojo.Korisnik;
 import pojo.Musterija;
 import pojo.TaksiSluzba;
 import pojo.Vozac;
 import pojo.Voznja;
 
 public class RadSaDatotekama {
-
+	
+	private ArrayList<Korisnik> korisnici;
 	private ArrayList<Vozac> vozaci;
 	private ArrayList<Musterija> musterije;
 	private ArrayList<Dispecer> dispeceri;
@@ -31,6 +34,7 @@ public class RadSaDatotekama {
 	private ArrayList<Voznja> voznje;
 	
 	public RadSaDatotekama() {
+		this.korisnici = new ArrayList<Korisnik>();
 		this.vozaci = new ArrayList<Vozac>();
 		this.musterije = new ArrayList<Musterija>();
 		this.dispeceri = new ArrayList<Dispecer>();
@@ -157,7 +161,14 @@ public class RadSaDatotekama {
 		this.voznje.remove(voznja);
 	}
 	
-	
+	public ArrayList<Korisnik> getKorisnici() {
+		return korisnici;
+	}
+
+	public void setKorisnici(ArrayList<Korisnik> korisnici) {
+		this.korisnici = korisnici;
+	}
+
 	public void ucitajDispecere(String putanja){
 		
 		try {
@@ -182,6 +193,7 @@ public class RadSaDatotekama {
 				
 				Dispecer dispecer = new Dispecer(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plata, brojTelefonskeLinije, telefonskaOdeljenja, obrisan);
 				dispeceri.add(dispecer);
+				korisnici.add(dispecer);
 			} 
 			reader.close();
 		} catch (IOException e) {
@@ -232,6 +244,7 @@ public class RadSaDatotekama {
 				
 				Musterija musterija = new Musterija(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan);
 				musterije.add(musterija);
+				korisnici.add(musterija);
 			} 
 			reader.close();
 		} catch (IOException e) {
@@ -273,9 +286,10 @@ public class RadSaDatotekama {
 				String godinaProizvodnje = lineSplit[3];
 				String brRegistarskeOznake = lineSplit[4];
 				EVrstaTaksiVozila vrstaTaksiVozila = EVrstaTaksiVozila.values()[Integer.parseInt(lineSplit[5])];
+				Boolean obrisan = Boolean.parseBoolean(lineSplit[6]);
 				
 				
-				Automobil automobil = new Automobil(id, model, proizvodjac, godinaProizvodnje, brRegistarskeOznake, vrstaTaksiVozila);
+				Automobil automobil = new Automobil(id, model, proizvodjac, godinaProizvodnje, brRegistarskeOznake, vrstaTaksiVozila, obrisan);
 				automobili.add(automobil);
 			} 
 			reader.close();
@@ -293,7 +307,7 @@ public class RadSaDatotekama {
 			for (Automobil automobil : automobili) {
 				sadrzaj += automobil.getId() + "|" + automobil.getModel().ordinal() + "|" 
 						+ automobil.getProizvodjac().ordinal() + "|" + automobil.getGodinaProizvodnje() + "|"
-						+ automobil.getBrRegistarskeOznake() + "|" + automobil.getVrstaTaksiVozila().ordinal() + "\n";
+						+ automobil.getBrRegistarskeOznake() + "|" + automobil.getVrstaTaksiVozila().ordinal() + "|" + automobil.isObrisan() + "\n";
 			}
 			
 			writer.write(sadrzaj);
@@ -328,6 +342,7 @@ public class RadSaDatotekama {
 					
 					Vozac vozac = new Vozac(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plata, brojClanskeKarteUdruzenjaTaksista, automobil, obrisan);
 					vozaci.add(vozac);
+					korisnici.add(vozac);
 				} 
 				reader.close();
 			} catch (IOException e) {
@@ -450,11 +465,11 @@ public class RadSaDatotekama {
 		}
 	}
 	
-	public Musterija login(String korisnickoIme, String lozinka) {
-		for (Musterija musterija : musterije) {
-			if(musterija.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) && 
-					musterija.getLozinka().equals(lozinka) && !musterija.isObrisan()) {
-				return musterija;
+	public Korisnik login(String korisnickoIme, String lozinka) {
+		for (Korisnik korisnik : korisnici) {
+			if(korisnik.getKorisnickoIme().equalsIgnoreCase(korisnickoIme) && 
+					korisnik.getLozinka().equals(lozinka) && !korisnik.isObrisan()) {
+				return korisnik;
 			}
 		}
 		return null;
@@ -469,6 +484,28 @@ public class RadSaDatotekama {
 		}
 		return null;
 	}
+	
+	public ArrayList<Dispecer> sviNeobrisaniDispeceri() {
+		ArrayList<Dispecer> neobrisani = new ArrayList<Dispecer>();
+		for (Dispecer dispecer : dispeceri) {
+			if(!dispecer.isObrisan()) {
+				neobrisani.add(dispecer);
+			}
+		}
+		return neobrisani;
+	}
+	
+	public ArrayList<Vozac> sviNeobrisaniVozaci() {
+		ArrayList<Vozac> neobrisani = new ArrayList<Vozac>();
+		for (Vozac vozac : vozaci) {
+			if(!vozac.isObrisan()) {
+				neobrisani.add(vozac);
+			}
+		}
+		return neobrisani;
+	}
+	
+	
 	
 	public Musterija NadjiMusterijuPoKorisnickomImenu(String korisnickoIme) {
 		for(Musterija a : this.musterije) {

@@ -4,7 +4,7 @@ import enums.EPol;
 
 public abstract class Korisnik {
 
-	//korisnicko ime, lozinka, ime, prezime, JMBG, adresa, pol, broj telefona. 
+	//korisnicko ime, lozinka, ime, prezime, JMBG, adresa, pol, broj telefona, obrisan
 	protected int id;
 	protected String korisnickoIme;
 	protected String lozinka;

@@ -12,6 +12,7 @@ public class Automobil {
 	private String godinaProizvodnje;
 	private String brRegistarskeOznake;
 	private EVrstaTaksiVozila vrstaTaksiVozila;
+	private boolean obrisan;
 	
 	public Automobil() {
 		this.id = 0;
@@ -20,10 +21,11 @@ public class Automobil {
 		this.godinaProizvodnje = "";
 		this.brRegistarskeOznake = "";
 		this.vrstaTaksiVozila = null;
+		this.obrisan = false;
 	}
 
 	public Automobil(int id, EModelAutomobila model, EProizvodjacAutomobila proizvodjac, String godinaProizvodnje,
-			String brRegistarskeOznake, EVrstaTaksiVozila vrstaTaksiVozila) {
+			String brRegistarskeOznake, EVrstaTaksiVozila vrstaTaksiVozila, boolean obrisan) {
 		super();
 		this.id = id;
 		this.model = model;
@@ -31,6 +33,7 @@ public class Automobil {
 		this.godinaProizvodnje = godinaProizvodnje;
 		this.brRegistarskeOznake = brRegistarskeOznake;
 		this.vrstaTaksiVozila = vrstaTaksiVozila;
+		this.obrisan = obrisan;
 	}
 
 	public int getId() {
@@ -80,12 +83,20 @@ public class Automobil {
 	public void setVrstaTaksiVozila(EVrstaTaksiVozila vrstaTaksiVozila) {
 		this.vrstaTaksiVozila = vrstaTaksiVozila;
 	}
+	
+	public boolean isObrisan() {
+		return obrisan;
+	}
+
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
+	}
 
 	@Override
 	public String toString() {
 		return "Automobil [id=" + id + ", model=" + model + ", proizvodjac=" + proizvodjac + ", godinaProizvodnje="
 				+ godinaProizvodnje + ", brRegistarskeOznake=" + brRegistarskeOznake + ", vrstaTaksiVozila="
-				+ vrstaTaksiVozila + "]";
+				+ vrstaTaksiVozila + ", obrisan=" + obrisan + "]";
 	}
 
 	
