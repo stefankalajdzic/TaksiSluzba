@@ -1,1 +1,2 @@
-1|20/7/2022|16:26|Proletera Marka 27 B|Zrenjanin Bulevar|1|1|0.6|9 min|1
+1|20/7/2022|16:26|Proletera Marka 27 B|Zrenjanin Bulevar|1|1|0.6|9 min|1|false
+1|30/2/2012|12:26|Boska Buhe 10B|Kisacka|1|1|0.6|15 min|1|false

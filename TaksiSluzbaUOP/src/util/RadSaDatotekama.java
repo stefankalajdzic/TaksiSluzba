@@ -392,8 +392,9 @@ public class RadSaDatotekama {
 				String brojPredjenihKilometara = lineSplit[7];
 				String trajanjeVoznje = lineSplit[8];
 				EStatusVoznje status = EStatusVoznje.values()[Integer.parseInt(lineSplit[9])];
+				Boolean obrisan = Boolean.parseBoolean(lineSplit[10]);
 				
-				Voznja voznja = new Voznja(id, datum, vremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojPredjenihKilometara, trajanjeVoznje, status);
+				Voznja voznja = new Voznja(id, datum, vremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojPredjenihKilometara, trajanjeVoznje, status, obrisan);
 				voznje.add(voznja);
 			} 
 			reader.close();
@@ -415,7 +416,7 @@ public class RadSaDatotekama {
 						+ String.valueOf(voznja.getMusterija().getId()) + "|" 
 						+ String.valueOf(voznja.getVozac().getId()) + "|" 
 						+ voznja.getBrojPredjenihKilometara() + "|" + voznja.getTrajanjeVoznje() + "|" 
-						+ voznja.getStatus().ordinal() + "\n";
+						+ voznja.getStatus().ordinal() + "|" + voznja.isObrisan() + "\n";
 			}
 			
 			writer.write(sadrzaj);
@@ -505,6 +506,16 @@ public class RadSaDatotekama {
 		return neobrisani;
 	}
 	
+	public ArrayList<Musterija> sveNeobrisaneMusterije() {
+		ArrayList<Musterija> neobrisani = new ArrayList<Musterija>();
+		for (Musterija musterija : musterije) {
+			if(!musterija.isObrisan()) {
+				neobrisani.add(musterija);
+			}
+		}
+		return neobrisani;
+	}
+	
 	public ArrayList<Automobil> sviNeobrisaniAutomobili() {
 		ArrayList<Automobil> neobrisani = new ArrayList<Automobil>();
 		for (Automobil automobil : automobili) {
@@ -513,6 +524,16 @@ public class RadSaDatotekama {
 			}
 		}
 		return neobrisani;
+	}
+	
+	public ArrayList<Voznja> sveNeobrisaneVoznje() {
+		ArrayList<Voznja> neobrisane = new ArrayList<Voznja>();
+		for (Voznja voznja : voznje) {
+			if(!voznja.isObrisan()) {
+				neobrisane.add(voznja);
+			}
+		}
+		return neobrisane;
 	}
 	
 	

@@ -14,6 +14,7 @@ public class Voznja {
 	private String brojPredjenihKilometara;
 	private String trajanjeVoznje;
 	private EStatusVoznje status;
+	private boolean obrisan;
 	
 	public Voznja() {
 		this.id = 0;
@@ -26,11 +27,12 @@ public class Voznja {
 		this.brojPredjenihKilometara = "";
 		this.trajanjeVoznje = "";
 		this.status = null;
+		this.obrisan = false;
 	}
 
 	public Voznja(int id, String datum, String vremePorudzbine, String adresaPolaska, String adresaDestinacije,
 			Musterija musterija, Vozac vozac, String brojPredjenihKilometara, String trajanjeVoznje,
-			EStatusVoznje status) {
+			EStatusVoznje status, boolean obrisan) {
 		super();
 		this.id = id;
 		this.datum = datum;
@@ -42,6 +44,7 @@ public class Voznja {
 		this.brojPredjenihKilometara = brojPredjenihKilometara;
 		this.trajanjeVoznje = trajanjeVoznje;
 		this.status = status;
+		this.obrisan = obrisan;
 	}
 
 	public int getId() {
@@ -124,13 +127,20 @@ public class Voznja {
 		this.status = status;
 	}
 	
-	
+	public boolean isObrisan() {
+		return obrisan;
+	}
+
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
+	}
+
 	@Override
 	public String toString() {
 		return "Voznja [id=" + id + ", datum=" + datum + ", vremePorudzbine=" + vremePorudzbine + ", adresaPolaska="
 				+ adresaPolaska + ", adresaDestinacije=" + adresaDestinacije + ", musterija=" + musterija + ", vozac="
 				+ vozac + ", brojPredjenihKilometara=" + brojPredjenihKilometara + ", trajanjeVoznje=" + trajanjeVoznje
-				+ ", status=" + status + "]";
+				+ ", status=" + status + ", obrisan=" + obrisan + "]";
 	}
 	
 }
