@@ -201,7 +201,7 @@ public class RadSaDatotekama {
 		}
 	}
 	
-	public void snimiDispecere() {
+	public void snimiDispecere(String putanja) {
 		
 		try {
 			File file = new File("src/files/dispeceri.txt");
@@ -241,8 +241,9 @@ public class RadSaDatotekama {
 				EPol pol = EPol.values()[Integer.parseInt(lineSplit[7])];
 				String brojTelefona = lineSplit[8];
 				Boolean obrisan = Boolean.parseBoolean(lineSplit[9]);
+				ArrayList<Voznja> njegoveVoznje = new ArrayList<Voznja>();
 				
-				Musterija musterija = new Musterija(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, obrisan);
+				Musterija musterija = new Musterija(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, njegoveVoznje, obrisan);
 				musterije.add(musterija);
 				korisnici.add(musterija);
 			} 
@@ -336,11 +337,11 @@ public class RadSaDatotekama {
 					String brojTelefona = lineSplit[8];
 					Double plata = Double.parseDouble(lineSplit[9]);
 					String brojClanskeKarteUdruzenjaTaksista = lineSplit[10];
-					Automobil automobil = new Automobil();
-					automobil.setId(Integer.parseInt(lineSplit[11]));
+					Automobil automobil = NadjiAutomobil(Integer.parseInt(lineSplit[11]));
 					Boolean obrisan = Boolean.parseBoolean(lineSplit[12]);
+					ArrayList<Voznja> voznje = new ArrayList<Voznja>();
 					
-					Vozac vozac = new Vozac(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plata, brojClanskeKarteUdruzenjaTaksista, automobil, obrisan);
+					Vozac vozac = new Vozac(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plata, brojClanskeKarteUdruzenjaTaksista, automobil, obrisan, voznje);
 					vozaci.add(vozac);
 					korisnici.add(vozac);
 				} 
@@ -385,16 +386,17 @@ public class RadSaDatotekama {
 				String vremePorudzbine = lineSplit[2];
 				String adresaPolaska = lineSplit[3];
 				String adresaDestinacije = lineSplit[4];
-				Musterija musterija = new Musterija();
-				musterija.setId(Integer.parseInt(lineSplit[5]));
-				Vozac vozac = new Vozac();
-				vozac.setId(Integer.parseInt(lineSplit[6]));
+				Musterija musterija = NadjiMusteriju(Integer.parseInt(lineSplit[5]));
+				Vozac vozac = nadjiVozaca(Integer.parseInt(lineSplit[6]));
 				String brojPredjenihKilometara = lineSplit[7];
 				String trajanjeVoznje = lineSplit[8];
 				EStatusVoznje status = EStatusVoznje.values()[Integer.parseInt(lineSplit[9])];
 				Boolean obrisan = Boolean.parseBoolean(lineSplit[10]);
 				
 				Voznja voznja = new Voznja(id, datum, vremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojPredjenihKilometara, trajanjeVoznje, status, obrisan);
+				vozac.getVoznje().add(voznja);
+				musterija.getNjegoveVoznje().add(voznja);
+
 				voznje.add(voznja);
 			} 
 			reader.close();
@@ -628,15 +630,34 @@ public class RadSaDatotekama {
 		return null;
 	}
 	
-	
-	public void snimiSve() {
-		snimiAutomobile();
-		snimiDispecere();
-		snimiMusterije();
-		snimiTaksiSluzbe();
-		snimiVozace();
-		snimiVoznje();
+	public Vozac pronadjiVozaca(Voznja voznja) {
+		for (Vozac vozac : sviNeobrisaniVozaci()) {
+			if (vozac.getVoznje().contains(voznja)) {
+				return vozac;
+			}
+		}
+		return null;
 	}
+	
+	public Voznja pronadjiVoznju(String adresaPolaska) {
+		for (Vozac vozac : vozaci) {
+			for(Voznja voznja : vozac.getVoznje()) {
+				if(voznja.getAdresaPolaska().equals(adresaPolaska)) {
+					return voznja;
+				}
+			}
+		}
+		return null;
+	}
+	
+//	public void snimiSve() {
+//		snimiAutomobile();
+//		snimiDispecere();
+//		snimiMusterije();
+//		snimiTaksiSluzbe();
+//		snimiVozace();
+//		snimiVoznje();
+//	}
 
 	
 }

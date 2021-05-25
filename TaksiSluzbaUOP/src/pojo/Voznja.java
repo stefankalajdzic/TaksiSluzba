@@ -135,12 +135,7 @@ public class Voznja {
 		this.obrisan = obrisan;
 	}
 
-	@Override
-	public String toString() {
-		return "Voznja [id=" + id + ", datum=" + datum + ", vremePorudzbine=" + vremePorudzbine + ", adresaPolaska="
-				+ adresaPolaska + ", adresaDestinacije=" + adresaDestinacije + ", musterija=" + musterija + ", vozac="
-				+ vozac + ", brojPredjenihKilometara=" + brojPredjenihKilometara + ", trajanjeVoznje=" + trajanjeVoznje
-				+ ", status=" + status + ", obrisan=" + obrisan + "]";
-	}
+	
+	
 	
 }

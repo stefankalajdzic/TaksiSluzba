@@ -1,5 +1,5 @@
 1|sike|sike123|Milos|Sikimic|52115215225|Kneza Miroslava bb|0|065521252|100000.0|5|1|false
 2|nada|nada123|Nada|Sikimic|52115215225|Kneza Miroslava bb|0|065521252|200000.0|5|1|false
 3|njego|njego123|Njegos|Sikimic|52115215225|Kneza Miroslava bb|0|065521252|400000.0|5|1|false
-4|maca|maca123|Marko|Sikimic|52115215225|Kneza Miroslava bb|0|065521252|100000.0|5|1|false
+4|maca|maca123|Marko|Sikimic|52115215225|Kneza Miroslava bb|0|065521252|100000.0|5|1|true
 5|mara|mara123|Mara|Sikimic|52115215225|Kneza Miroslava bb|0|065521252|500000.0|5|1|false

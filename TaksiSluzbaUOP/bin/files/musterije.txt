@@ -1,2 +1,2 @@
 1|kalaj|bariton123|Stefan|Kalajdzic|52115215225|Brcko bb|1|0650722922|false
-1|kalaj|bariton123|Stefan|Kalajdzic|52115215225|Brcko bb|1|0650722922|false
+2|kalaj|bariton123|Stefan|Kalajdzic|52115215225|Brcko bb|1|0650722922|false

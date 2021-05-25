@@ -1,17 +1,16 @@
 package main;
 
 import gui.LoginProzor;
-
 import util.RadSaDatotekama;
 
 public class Main {
 	
-	private static String AUTOMOBILI_FAJL = "src/files/automobili.txt";
-	private static String DISPECERI_FAJL = "src/files/dispeceri.txt";
-	private static String MUSTERIJE_FAJL = "src/files/musterije.txt";
-	private static String TAKSI_SLUZBE_FAJL = "src/files/taksiSluzbe.txt";
-	private static String VOZACI_FAJL = "src/files/vozaci.txt";
-	private static String VOZNJE_FAJL = "src/files/voznje.txt";
+	public static String AUTOMOBILI_FAJL = "src/files/automobili.txt";
+	public static String DISPECERI_FAJL = "src/files/dispeceri.txt";
+	public static String MUSTERIJE_FAJL = "src/files/musterije.txt";
+	public static String TAKSI_SLUZBE_FAJL = "src/files/taksiSluzbe.txt";
+	public static String VOZACI_FAJL = "src/files/vozaci.txt";
+	public static String VOZNJE_FAJL = "src/files/voznje.txt";
 	
 	public static void main(String[] args) {
 		
@@ -25,6 +24,6 @@ public class Main {
 
 		LoginProzor lp = new LoginProzor(rsd);
 		lp.setVisible(true);
-		
+		//rsd.snimiSve();
 	}
 }

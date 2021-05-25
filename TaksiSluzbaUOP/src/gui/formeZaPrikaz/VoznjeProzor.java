@@ -61,8 +61,8 @@ public class VoznjeProzor extends JFrame {
 		
 		for(int i=0; i< rsd.sveNeobrisaneVoznje().size(); i++) {
 			Voznja voznja = rsd.sveNeobrisaneVoznje().get(i);
-			Musterija musterija = rsd.sveNeobrisaneMusterije().get(i);
-			Vozac vozac = rsd.sviNeobrisaniVozaci().get(i);
+			Musterija musterija = voznja.getMusterija();
+			Vozac vozac = voznja.getVozac();
 			sadrzaj[i][0] = voznja.getId();
 			sadrzaj[i][1] = voznja.getDatum();
 			sadrzaj[i][2] = voznja.getVremePorudzbine();
