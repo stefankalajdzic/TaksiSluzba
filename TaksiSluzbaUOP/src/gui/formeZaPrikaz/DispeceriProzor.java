@@ -142,24 +142,24 @@ public class DispeceriProzor extends JFrame {
 			}
 		});
 		
-//		btnEdit.addActionListener(new ActionListener() {
-//					
-//					@Override
-//					public void actionPerformed(ActionEvent e) {
-//						int red = dispeceriTabela.getSelectedRow();
-//						if(red == -1) {
-//							JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
-//						}else {
-//							String korisnickoIme = tableModel.getValueAt(red, 3).toString();
-//							Dispecer dispecer = rsd.NadjiDispeceraPoKorisnickomImenu(korisnickoIme);
-//							if(dispecer == null) {
-//								JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja prodavca sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
-//							}else {
-//								ProdavciForma pf = new ProdavciForma(rsd, dispecer);
-//								pf.setVisible(true);
-//							}
-//						}
-//					}
-//				});
+		btnEdit.addActionListener(new ActionListener() {
+					
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int red = dispeceriTabela.getSelectedRow();
+					if(red == -1) {
+						JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+					}else {
+						String korisnickoIme = tableModel.getValueAt(red, 1).toString();
+						Dispecer dispecer = rsd.NadjiDispeceraPoKorisnickomImenu(korisnickoIme);
+						if(dispecer == null) {
+							JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja dispecera sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
+						}else {
+							DispeceriForma df = new DispeceriForma(rsd, dispecer);
+							df.setVisible(true);
+						}
+					}
+				}
+			});
 	}
 }

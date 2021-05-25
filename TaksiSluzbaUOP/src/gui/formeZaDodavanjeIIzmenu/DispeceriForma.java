@@ -13,15 +13,20 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import pojo.Dispecer;
+import pojo.Korisnik;
 import util.RadSaDatotekama;
 import enums.EPol;
 import enums.ETelefonskaOdeljenja;
+import gui.LoginProzor;
+import main.Main;
 
 public class DispeceriForma extends JFrame {
 
 	//zavrseno
+	private JLabel lblId = new JLabel("Id");
+	private JTextField txtId = new JTextField(20);
 	private JLabel lblKorisnickoIme = new JLabel("Korisnicko ime");
-	private JTextField txtkorisnickoIme = new JTextField(20);
+	private JTextField txtKorisnickoIme = new JTextField(20);
 	private JLabel lblLozinka = new JLabel("Lozinka");
 	private JPasswordField pfLozinka = new JPasswordField(20);
 	private JLabel lblIme = new JLabel("Ime");
@@ -40,14 +45,14 @@ public class DispeceriForma extends JFrame {
 	private JTextField txtPlata = new JTextField(20);
 	private JLabel lblBrTelefonskeLinije = new  JLabel("Br. tel. linije");
 	private JTextField txtBrTelefonskeLinije = new JTextField(20);
-	private JLabel lblBrojTelefonskogOdeljenja = new JLabel("Br. tel. odeljenja");
-	private JComboBox<ETelefonskaOdeljenja> cbBrojTelefonskogOdeljenja = 
+	private JLabel lblTelefonskoOdeljenje = new JLabel("Br. tel. odeljenja");
+	private JComboBox<ETelefonskaOdeljenja> cbTelefonskoOdeljenje = 
 				new JComboBox<ETelefonskaOdeljenja>(ETelefonskaOdeljenja.values());
 	
 	
 	
 	private JButton btnOk = new JButton("OK");
-	private JButton btnCanel = new JButton("Cancel");
+	private JButton btnCancel = new JButton("Cancel");
 	
 	private RadSaDatotekama rsd;
 	private Dispecer dispecer;
@@ -72,12 +77,14 @@ public class DispeceriForma extends JFrame {
 		MigLayout layout = new MigLayout("wrap 2", "[][]", "[][][][][][][][][][][]20[]");
 		setLayout(layout);
 		
-//		if(dispecer != null) {
-//			popuniPolja();
-//		}
+		if(dispecer != null) {
+			popuniPolja();
+		}
 		
+		add(lblId);
+		add(txtId);
 		add(lblKorisnickoIme);
-		add(txtkorisnickoIme);
+		add(txtKorisnickoIme);
 		add(lblLozinka);
 		add(pfLozinka);
 		add(lblIme);
@@ -96,15 +103,172 @@ public class DispeceriForma extends JFrame {
 		add(txtPlata);
 		add(lblBrTelefonskeLinije);
 		add(txtBrTelefonskeLinije);
-		add(lblBrojTelefonskogOdeljenja);
-		add(cbBrojTelefonskogOdeljenja);
+		add(lblTelefonskoOdeljenje);
+		add(cbTelefonskoOdeljenje);
 		add(new JLabel());
 		add(btnOk, "split 2");
-		add(btnCanel);
+		add(btnCancel);
 	}
 	
 	private void initActions() {
 		
+		btnOk.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(validacija()) {
+					int id = Integer.parseInt(txtId.getText().trim());
+					String korisnickoIme = txtKorisnickoIme.getText().trim();
+					String lozinka = new String(pfLozinka.getPassword()).trim();
+					String ime = txtIme.getText().trim();
+					String prezime = txtPrezime.getText().trim();
+					String jmbg = txtJmbg.getText().trim();
+					String adresa = txtAdresa.getText().trim();
+					EPol pol = (EPol)cbPol.getSelectedItem();
+					String brojTelefona = txtBrTelefona.getText().trim();
+					double plata = Double.parseDouble(txtPlata.getText().trim());
+					String brojTelefonskeLinije = txtBrTelefonskeLinije.getText().trim();
+					ETelefonskaOdeljenja telefonskaOdeljenja = (ETelefonskaOdeljenja)cbTelefonskoOdeljenje.getSelectedItem();
+					
+					// DODAVANJE:
+					if(dispecer == null) { 
+						Dispecer novi = new Dispecer(id, korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, brojTelefona, plata, brojTelefonskeLinije, telefonskaOdeljenja, false);
+						rsd.dodajDispecera(novi);
+					// IZMJENA:
+					}else { 
+						dispecer.setKorisnickoIme(korisnickoIme);
+						dispecer.setLozinka(lozinka);
+						dispecer.setIme(ime);
+						dispecer.setPrezime(prezime);
+						dispecer.setJmbg(jmbg);
+						dispecer.setAdresa(adresa);
+						dispecer.setPol(pol);
+						dispecer.setBrojTelefona(brojTelefona);
+						dispecer.setPlata(plata);
+						dispecer.setBrojTelefonskeLinije(brojTelefonskeLinije);
+						dispecer.setTelefonskaOdeljenja(telefonskaOdeljenja);
+					}
+					rsd.snimiDispecere(Main.DISPECERI_FAJL);
+					DispeceriForma.this.dispose();
+					DispeceriForma.this.setVisible(false);
+				}
+			}
+		});
+		
+		btnCancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DispeceriForma.this.dispose();
+				DispeceriForma.this.setVisible(false);
+				
+			}
+		});
+		
 	}
-}
 	
+	private void popuniPolja() {
+		txtId.setText(String.valueOf(dispecer.getId()));
+		txtKorisnickoIme.setText(dispecer.getKorisnickoIme());
+		pfLozinka.setText(dispecer.getLozinka());
+		txtIme.setText(dispecer.getIme());
+		txtPrezime.setText(dispecer.getPrezime());
+		txtJmbg.setText(dispecer.getJmbg());
+		txtAdresa.setText(dispecer.getAdresa());
+		//za checkbox treba da postavimo da li je checkiran ili nije
+		cbPol.setSelectedItem(dispecer.getPol());
+		txtBrTelefona.setText(dispecer.getBrojTelefona());
+		txtPlata.setText(String.valueOf(dispecer.getPlata()));
+		txtBrTelefonskeLinije.setText(dispecer.getBrojTelefonskeLinije());
+		cbTelefonskoOdeljenje.setSelectedItem(dispecer.getTelefonskaOdeljenja());
+		
+	}
+	private boolean validacija() {
+		
+		boolean ok = true;
+		String poruka = "Molimo popravite sledece greske u unosu:\n";
+		
+		if(txtId.getText().trim().equals("")) {
+			poruka += "- Unesite Id\n";
+			ok = false;
+		}else if(dispecer == null) {
+			int id = Integer.parseInt(txtId.getText().trim());
+			Dispecer pronadjeni = rsd.NadjiDispecera(id);
+			if(pronadjeni != null) {
+				poruka += "- Dispecer sa unetim id-em vec postoji\n";
+				ok = false;
+			}
+		}
+		
+		/*Zasto ne radi validacija ako korisnik sa unetim korisnickim imenom vec postoji?! 
+							Metoda iznad radi po istom principu?*/
+		if(txtKorisnickoIme.getText().trim().equals("")) {
+			poruka += "- Unesite korisnicko ime\n";
+			ok = false;
+		}else if(dispecer == null){
+			String korIme = txtKorisnickoIme.getText().trim();
+			Korisnik pronadjeni = rsd.NadjiKorisnikaPoKorisnickomImenu(korIme);
+			if(pronadjeni != null && !pronadjeni.isObrisan()) {
+				poruka += "- Korisnik sa unetim korisnickim imenom vec postoji\n";
+				ok = false;
+			}
+		}
+		
+		String lozinka = new String(pfLozinka.getPassword()).trim();
+		if(lozinka.equals("")) {
+			poruka += "- Unesite lozinku\n";
+			ok = false;
+		}
+		
+
+		if(txtIme.getText().trim().equals("")) {
+			poruka += "- Unesite ime\n";
+			ok = false;
+		}
+		
+		
+		if(txtJmbg.getText().trim().equals("")) {
+			poruka += "- Unesite jmbg\n";
+			ok = false;
+		}
+		
+		if(txtPrezime.getText().trim().equals("")) {
+			poruka += "- Unesite prezime\n";
+			ok = false;
+		}
+		
+		if(txtAdresa.getText().trim().equals("")) {
+			poruka += "- Unesite adresu\n";
+			ok = false;
+		}
+		
+		if(txtBrTelefona.getText().trim().equals("")) {
+			poruka += "- Unesite broj telefona\n";
+			ok = false;
+		}
+		
+		if(txtPlata.getText().trim().equals("")) {
+			poruka += "- Unesite platu\n";
+			ok = false;
+		}else {
+			try {
+			Double.parseDouble(txtPlata.getText().trim());
+			}catch (NumberFormatException e) {
+				poruka += "- Plata mora biti unesena kao numericka vrednost\n";
+				ok = false;
+				}
+		}
+		
+		if(txtBrTelefonskeLinije.getText().trim().equals("")) {
+			poruka += "- Unesite broj telefonske linije\n";
+			ok = false;
+		}
+		
+		
+		if(ok == false) {
+			JOptionPane.showMessageDialog(null, poruka, "Neispravni podaci", JOptionPane.WARNING_MESSAGE);
+		}
+		
+		return ok;
+	}
+	
+}

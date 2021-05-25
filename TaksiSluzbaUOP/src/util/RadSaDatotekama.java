@@ -542,7 +542,16 @@ public class RadSaDatotekama {
 	
 	public Musterija NadjiMusterijuPoKorisnickomImenu(String korisnickoIme) {
 		for(Musterija a : this.musterije) {
-			if (a.getKorisnickoIme() == korisnickoIme) {
+			if (a.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)) {
+				return a;
+			}
+		}
+		return null;
+	}
+	
+	public Korisnik NadjiKorisnikaPoKorisnickomImenu(String korisnickoIme) {
+		for(Korisnik a : this.korisnici) {
+			if (a.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)) {
 				return a;
 			}
 		}
@@ -578,7 +587,7 @@ public class RadSaDatotekama {
 	
 	public Dispecer NadjiDispeceraPoKorisnickomImenu(String korisnickoIme) {
 		for(Dispecer a : this.dispeceri) {
-			if (a.getKorisnickoIme() == korisnickoIme) {
+			if (a.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)) {
 				return a;
 			}
 		}
@@ -642,7 +651,7 @@ public class RadSaDatotekama {
 	public Voznja pronadjiVoznju(String adresaPolaska) {
 		for (Vozac vozac : vozaci) {
 			for(Voznja voznja : vozac.getVoznje()) {
-				if(voznja.getAdresaPolaska().equals(adresaPolaska)) {
+				if(voznja.getAdresaPolaska().equalsIgnoreCase(adresaPolaska)) {
 					return voznja;
 				}
 			}

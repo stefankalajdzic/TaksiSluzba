@@ -1,4 +1,2 @@
-1|tanja|tanja123|Tanja|Kojic|52115215225|Brcko bb|1|0650722922|90000.0|br 25|1|false
-2|ilija|mladen123|Tanja|Kojic|52115215225|Brcko bb|1|0650722922|90000.0|br 25|1|false
-3|mladen|mladen123|Tanja|Kojic|52115215225|Brcko bb|1|0650722922|90000.0|br 25|1|false
-4|stefan|stefan123|Tanja|Kojic|52115215225|Brcko bb|1|0650722922|90000.0|br 25|1|false
+1|ilija|ilija123|Ilija|Kalajdzic|0108955104256|Profesora Aleksandra Nikolica 27|1|065517239|90000.0|br 1|1|false
+2|rada|rada123|Radojka|Kalajdzic|0907962543264|Profesora Aleksandra Nikolica 27|0|065729101|90000.0|br 2|1|false
