@@ -119,7 +119,7 @@ public class DispeceriProzor extends JFrame {
 					
 					int izbor = JOptionPane.showConfirmDialog(null, 
 							"Da li ste sigurni da zelite da obrisete dispecera?", 
-							korisnickoIme + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
+							korisnickoIme + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
 					if(izbor == JOptionPane.YES_OPTION) {
 						dispecer.setObrisan(true);
 						//da je ovo vozac:

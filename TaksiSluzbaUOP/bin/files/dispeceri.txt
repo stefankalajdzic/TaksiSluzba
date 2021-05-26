@@ -1,4 +1,4 @@
-1|tanja|tanja123|Tanja|Kojic|1703996654234|Danila Kisa 5|1|066763519|500000.0|5|1|false
+1|tanja|tanja123|Tanja|Kojic|1703996654234|Danila Kisa 5|1|066763519|500000.0|5|1|true
 2|sike|sike123|Milos|Sikimic|0101999252314|Kneza Miroslava bb|0|065521252|400000.0|10|1|false
-3|mladen|mladen123|Mladen|Kalajdzic|52115215225|Kneza Miroslava bb|0|065521252|300000.0|6|1|false
-4|vera|vera123|Vera|Kalajdzic|2710985876584|Kneza Viselsava bb|1|0666859838|200000.0|br 50|0|false
+3|mladen|mladen123|Mladen|Kalajdzic|52115215225|Kneza Miroslava bb|0|065521252|300000.0|6|1|true
+4|vera|vera123|Vera|Djokic|2710985876584|Kneza Viselsava bb|1|0666859838|50000.0|br 50|0|false

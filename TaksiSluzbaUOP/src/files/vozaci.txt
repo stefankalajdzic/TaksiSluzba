@@ -1,2 +1,2 @@
-1|ilija|ilija123|Ilija|Kalajdzic|0108955104256|Profesora Aleksandra Nikolica 27|1|065517239|90000.0|br 1|1|false
+1|ilija|ilija123|Ilija|Kalajdzic|0108955104256|Profesora Aleksandra Nikolica 27|1|065517239|90000.0|br 1|1|true
 2|rada|rada123|Radojka|Kalajdzic|0907962543264|Profesora Aleksandra Nikolica 27|0|065729101|90000.0|br 2|1|false

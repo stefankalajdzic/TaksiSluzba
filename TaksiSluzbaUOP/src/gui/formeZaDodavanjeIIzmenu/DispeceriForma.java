@@ -193,7 +193,7 @@ public class DispeceriForma extends JFrame {
 		}else if(dispecer == null) {
 			int id = Integer.parseInt(txtId.getText().trim());
 			Dispecer pronadjeni = rsd.NadjiDispecera(id);
-			if(pronadjeni != null) {
+			if(pronadjeni != null && !pronadjeni.isObrisan()) {
 				poruka += "- Dispecer sa unetim id-em vec postoji\n";
 				ok = false;
 			}

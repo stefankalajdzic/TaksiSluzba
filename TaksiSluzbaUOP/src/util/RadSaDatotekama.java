@@ -253,10 +253,10 @@ public class RadSaDatotekama {
 		}
 	}
 
-	public void snimiMusterije() {
+	public void snimiMusterije(String putanja) {
 		
 		try {
-			File file = new File("src/files/musterije.txt");
+			File file = new File(putanja);
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			String sadrzaj = "";
 			for (Musterija musterija : musterije) {
@@ -351,10 +351,10 @@ public class RadSaDatotekama {
 			}
 		}
 
-	public void snimiVozace() {
+	public void snimiVozace(String putanja) {
 		
 		try {
-			File file = new File("src/files/vozaci.txt");
+			File file = new File(putanja);
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			String sadrzaj = "";
 			for (Vozac vozac : vozaci) {
@@ -405,10 +405,10 @@ public class RadSaDatotekama {
 		}
 	}
 
-	public void snimiVoznje() {
+	public void snimiVoznje(String putanja) {
 		
 		try {
-			File file = new File("src/files/voznje.txt");
+			File file = new File(putanja);
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			String sadrzaj = "";
 			for (Voznja voznja : voznje) {
@@ -569,7 +569,7 @@ public class RadSaDatotekama {
 	
 	public Vozac NadjiVozacaPoKorisnickomImenu(String korisnickoIme) {
 		for(Vozac a : this.vozaci) {
-			if (a.getKorisnickoIme() == korisnickoIme) {
+			if (a.getKorisnickoIme().equalsIgnoreCase(korisnickoIme)) {
 				return a;
 			}
 		}
