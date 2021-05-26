@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import gui.formeZaPrikaz.DispeceriProzor;
+import gui.formeZaPrikaz.MusterijeProzor;
 import pojo.Dispecer;
 import util.RadSaDatotekama;
 
@@ -16,8 +17,10 @@ public class GlavniProzorDispeceri extends JFrame {
 
 	private JMenuBar mainMenu = new JMenuBar();
 	private JMenu dodeliVoznju = new JMenu("Dodeli voznju vozacu");
-	private JMenu dispeceriMenu = new JMenu("Dispeceri");
+	private JMenu dispeceriMenu = new JMenu("Prikaz dispecera");
 	private JMenuItem dispeceriItem = new JMenuItem("Dispeceri");
+	private JMenu MusterijeMenu = new JMenu("Musterije");
+	private JMenuItem musterijeItem = new JMenuItem("Prikaz musterija");
 	
 	private RadSaDatotekama rsd;
 	private Dispecer prijavljeniKorisnik;
@@ -38,7 +41,9 @@ public class GlavniProzorDispeceri extends JFrame {
 		setJMenuBar(mainMenu);
 		mainMenu.add(dodeliVoznju);
 		mainMenu.add(dispeceriMenu);
+		mainMenu.add(MusterijeMenu);
 		dispeceriMenu.add(dispeceriItem);
+		MusterijeMenu.add(musterijeItem);
 	}
 	
 	private void initActions() {
@@ -50,6 +55,17 @@ public class GlavniProzorDispeceri extends JFrame {
 				
 				DispeceriProzor dp = new DispeceriProzor(rsd);
 				dp.setVisible(true);
+				
+			}
+		});
+		
+		musterijeItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				MusterijeProzor mp = new MusterijeProzor(rsd);
+				mp.setVisible(true);
 				
 			}
 		});

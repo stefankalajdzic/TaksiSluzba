@@ -22,7 +22,7 @@ public class GlavniProzorMusterije extends JFrame {
 		this.prijavljeniKorisnik = prijavljeniKorisnik;
 		setTitle("Musterija: " + prijavljeniKorisnik.getKorisnickoIme());
 		setSize(500, 500);
-		setResizable(false);
+		setResizable(true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		initMenu();

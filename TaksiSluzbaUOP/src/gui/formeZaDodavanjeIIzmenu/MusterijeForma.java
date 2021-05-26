@@ -131,7 +131,7 @@ public class MusterijeForma extends JFrame {
 						musterija.setBrojTelefona(brojTelefona);
 						
 					}
-					rsd.snimiDispecere(Main.DISPECERI_FAJL);
+					rsd.snimiMusterije(Main.MUSTERIJE_FAJL);
 					MusterijeForma.this.dispose();
 					MusterijeForma.this.setVisible(false);
 				}

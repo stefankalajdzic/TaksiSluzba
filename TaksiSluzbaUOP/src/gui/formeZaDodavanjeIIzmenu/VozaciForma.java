@@ -15,12 +15,10 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 import pojo.Automobil;
 import pojo.Korisnik;
-import pojo.Musterija;
 import pojo.Vozac;
 import pojo.Voznja;
 import util.RadSaDatotekama;
 import enums.EPol;
-import gui.LoginProzor;
 import main.Main;
 
 public class VozaciForma extends JFrame {
@@ -82,6 +80,10 @@ public class VozaciForma extends JFrame {
 		if(vozac!= null) {
 			popuniPolja();
 		}
+//		cbAutomobil.addItem(vozac.getKorisnickoIme());
+		for(Automobil a: this.rsd.getAutomobili()) {
+			cbAutomobil.addItem(a.getBrRegistarskeOznake());
+		}
 		
 		add(lblId);
 		add(txtId);
@@ -131,10 +133,8 @@ public class VozaciForma extends JFrame {
 					double plata = Double.parseDouble(txtPlata.getText().trim());
 					String brojClanskeKarteUdruzenjaTaksista = txtbrojClanskeKarteUdruzenjaTaksista.getText().trim();
 					String auto = cbAutomobil.getSelectedItem().toString();
-					int IdAuta = Integer.parseInt(auto);
-					Automobil automobil = rsd.NadjiAutomobil(IdAuta);
-					//dodati ostalo
 					
+					Automobil automobil = rsd.pronadjiAutomobilPoBrRegistarskeOznake(auto);
 					
 					// DODAVANJE:
 					if(vozac == null) { 
@@ -153,6 +153,7 @@ public class VozaciForma extends JFrame {
 						vozac.setBrojClanskeKarteUdruzenjaTaksista(brojClanskeKarteUdruzenjaTaksista);
 						vozac.setAutomobil(automobil);
 						//dodati ostalo
+						
 					}
 					rsd.snimiVozace(Main.VOZACI_FAJL);
 					VozaciForma.this.dispose();
@@ -186,7 +187,7 @@ public class VozaciForma extends JFrame {
 		txtBrTelefona.setText(vozac.getBrojTelefona());
 		txtPlata.setText(String.valueOf(vozac.getPlata()));
 		txtbrojClanskeKarteUdruzenjaTaksista.setText(vozac.getBrojClanskeKarteUdruzenjaTaksista());
-		cbAutomobil.setSelectedItem(String.valueOf(vozac.getAutomobil().getId()));
+		cbAutomobil.setSelectedItem(String.valueOf(vozac.getAutomobil().getBrRegistarskeOznake()));
 		
 		
 	}

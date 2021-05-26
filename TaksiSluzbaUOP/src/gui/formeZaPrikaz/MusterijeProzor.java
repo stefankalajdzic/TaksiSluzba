@@ -1,9 +1,7 @@
 package gui.formeZaPrikaz;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,16 +11,15 @@ import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-
-import gui.formeZaDodavanjeIIzmenu.DispeceriForma;
+import gui.formeZaDodavanjeIIzmenu.MusterijeForma;
 import gui.formeZaDodavanjeIIzmenu.VozaciForma;
 import main.Main;
 import pojo.Automobil;
-import pojo.Dispecer;
+import pojo.Musterija;
 import pojo.Vozac;
 import util.RadSaDatotekama;
 
-public class VozaciProzor extends JFrame {
+public class MusterijeProzor extends JFrame {
 	
 
 	private JToolBar mainToolbar = new JToolBar();
@@ -31,13 +28,13 @@ public class VozaciProzor extends JFrame {
 	private JButton btnDelete = new JButton();
 	
 	private DefaultTableModel tableModel;
-	private JTable vozaciTabela;
+	private JTable musterijeTabela;
 	
 	private RadSaDatotekama rsd;
 	
-	public VozaciProzor(RadSaDatotekama rsd) {
+	public MusterijeProzor(RadSaDatotekama rsd) {
 		this.rsd = rsd;
-		setTitle("Vozaci");
+		setTitle("Musterije");
 		setSize(500, 300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -60,36 +57,32 @@ public class VozaciProzor extends JFrame {
 		mainToolbar.setFloatable(false);
 		
 		String[] zaglavlja = new String[] {"Id", "Korisnicko ime", "Lozinka", "Ime", "Prezime", "Jmbg", "Adresa", "Pol",
-											"Broj telefona", "Plata", "Br clanske karte udruzenja", "Automobil"};
-		Object[][] sadrzaj = new Object[rsd.sviNeobrisaniVozaci().size()][zaglavlja.length];
+											"Broj telefona"};
+		Object[][] sadrzaj = new Object[rsd.sveNeobrisaneMusterije().size()][zaglavlja.length];
 		
-		for(int i=0; i< rsd.sviNeobrisaniVozaci().size(); i++) {
-			Vozac vozac = rsd.sviNeobrisaniVozaci().get(i);
-			Automobil automobil = rsd.sviNeobrisaniAutomobili().get(i);
-			sadrzaj[i][0] = vozac.getId();
-			sadrzaj[i][1] = vozac.getKorisnickoIme();
-			sadrzaj[i][2] = vozac.getLozinka();
-			sadrzaj[i][3] = vozac.getIme();
-			sadrzaj[i][4] = vozac.getPrezime();
-			sadrzaj[i][5] = vozac.getJmbg();
-			sadrzaj[i][6] = vozac.getAdresa();
-			sadrzaj[i][7] = vozac.getPol();
-			sadrzaj[i][8] = vozac.getBrojTelefona();
-			sadrzaj[i][9] = vozac.getPlata();
-			sadrzaj[i][10] = vozac.getBrojClanskeKarteUdruzenjaTaksista();
-			sadrzaj[i][11] = automobil == null ? "--" : vozac.getAutomobil().getId();
+		for(int i=0; i< rsd.sveNeobrisaneMusterije().size(); i++) {
+			Musterija musterija = rsd.sveNeobrisaneMusterije().get(i);
+			sadrzaj[i][0] = musterija.getId();
+			sadrzaj[i][1] = musterija.getKorisnickoIme();
+			sadrzaj[i][2] = musterija.getLozinka();
+			sadrzaj[i][3] = musterija.getIme();
+			sadrzaj[i][4] = musterija.getPrezime();
+			sadrzaj[i][5] = musterija.getJmbg();
+			sadrzaj[i][6] = musterija.getAdresa();
+			sadrzaj[i][7] = musterija.getPol();
+			sadrzaj[i][8] = musterija.getBrojTelefona();
 		}
 		
 		tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
-		vozaciTabela = new JTable(tableModel);
+		musterijeTabela = new JTable(tableModel);
 		
-		vozaciTabela.setRowSelectionAllowed(true);
-		vozaciTabela.setColumnSelectionAllowed(false);
-		vozaciTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		vozaciTabela.setDefaultEditor(Object.class, null);
-		vozaciTabela.getTableHeader().setReorderingAllowed(false);
+		musterijeTabela.setRowSelectionAllowed(true);
+		musterijeTabela.setColumnSelectionAllowed(false);
+		musterijeTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		musterijeTabela.setDefaultEditor(Object.class, null);
+		musterijeTabela.getTableHeader().setReorderingAllowed(false);
 		
-		JScrollPane scrollPane = new JScrollPane(vozaciTabela);
+		JScrollPane scrollPane = new JScrollPane(musterijeTabela);
 		add(scrollPane, BorderLayout.CENTER);
 	}
 	
@@ -100,7 +93,7 @@ public class VozaciProzor extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				int red = vozaciTabela.getSelectedRow();
+				int red = musterijeTabela.getSelectedRow();
 				//za voznju iz perspektive dispecera, pored dugmeta za brisanje itd. bice i dugme za dodelu voznje vozacu(samo ako voznja ima status kreirana):
 				// int idVoznje = tableModel.getValueAt(red, 0).toString();
 				// Voznja voznjica = rsd.NadjiVoznju(Integer.parseInt(idVoznje));
@@ -116,19 +109,19 @@ public class VozaciProzor extends JFrame {
 			//} 
 				else {
 					String korisnickoIme = tableModel.getValueAt(red, 1).toString();
-					Vozac vozac = rsd.NadjiVozacaPoKorisnickomImenu(korisnickoIme);
+					Musterija musterija = rsd.NadjiMusterijuPoKorisnickomImenu(korisnickoIme);
 					
 					int izbor = JOptionPane.showConfirmDialog(null, 
-							"Da li ste sigurni da zelite da obrisete dispecera?", 
+							"Da li ste sigurni da zelite da obrisete musteriju?", 
 							korisnickoIme + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
 					if(izbor == JOptionPane.YES_OPTION) {
-						vozac.setObrisan(true);
+						musterija.setObrisan(true);
 						//da je ovo vozac:
 //						(for Voznja v : vozac.getNjegoveVoznje()){
 //							v.setObrisan(true);
 //						}
 						tableModel.removeRow(red);
-						rsd.snimiVozace(Main.VOZACI_FAJL);
+						rsd.snimiMusterije(Main.MUSTERIJE_FAJL);
 					}
 				}
 				
@@ -147,17 +140,17 @@ public class VozaciProzor extends JFrame {
 					
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					int red = vozaciTabela.getSelectedRow();
+					int red = musterijeTabela.getSelectedRow();
 					if(red == -1) {
 						JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 					}else {
 						String korisnickoIme = tableModel.getValueAt(red, 1).toString();
-						Vozac vozac = rsd.NadjiVozacaPoKorisnickomImenu(korisnickoIme);
-						if(vozac == null) {
-							JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja dispecera sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
+						Musterija musterija = rsd.NadjiMusterijuPoKorisnickomImenu(korisnickoIme);
+						if(musterija == null) {
+							JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja musterije sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
 						}else {
-							VozaciForma vf = new VozaciForma(rsd, vozac);
-							vf.setVisible(true);
+							MusterijeForma mf = new MusterijeForma(rsd, musterija);
+							mf.setVisible(true);
 						}
 					}
 				}
