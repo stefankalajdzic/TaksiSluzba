@@ -64,6 +64,7 @@ public class MusterijeForma extends JFrame {
 		initActions();
 		setResizable(false);
 		pack();
+		getRootPane().setDefaultButton(btnOk);
 	}
 	
 	private void initGUI() {
@@ -152,6 +153,7 @@ public class MusterijeForma extends JFrame {
 	
 	private void popuniPolja() {
 		txtId.setText(String.valueOf(musterija.getId()));
+		txtId.setEnabled(false);
 		txtKorisnickoIme.setText(musterija.getKorisnickoIme());
 		pfLozinka.setText(musterija.getLozinka());
 		txtIme.setText(musterija.getIme());

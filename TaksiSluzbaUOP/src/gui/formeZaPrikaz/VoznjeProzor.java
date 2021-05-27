@@ -74,8 +74,8 @@ public class VoznjeProzor extends JFrame {
 			sadrzaj[i][2] = voznja.getVremePorudzbine();
 			sadrzaj[i][3] = voznja.getAdresaPolaska();
 			sadrzaj[i][4] = voznja.getAdresaDestinacije();
-			sadrzaj[i][5] = musterija == null ? "--" : musterija;
-			sadrzaj[i][6] = vozac == null ? "--" : vozac.getId();
+			sadrzaj[i][5] = musterija.isObrisan() ? "Obrisana musterija" : musterija.getId();
+			sadrzaj[i][6] = vozac.isObrisan() ? "Obrisan vozac" : vozac.getId();
 			sadrzaj[i][7] = voznja.getBrojPredjenihKilometara();
 			sadrzaj[i][8] = voznja.getTrajanjeVoznje();
 			sadrzaj[i][9] = voznja.getStatus();
@@ -155,7 +155,7 @@ public class VoznjeProzor extends JFrame {
 						String adresapolaska = tableModel.getValueAt(red, 3).toString();
 						Voznja voznja = rsd.pronadjiVoznju(adresapolaska);
 						if(voznja == null) {
-							JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja dispecera sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja voznje sa postojecom adresom polaska.\n              Osvezite prozor kako bi se ucitali izmenjeni podaci.", "Greska", JOptionPane.WARNING_MESSAGE);
 						}else {
 							VoznjeForma voznjef = new VoznjeForma(rsd, voznja);
 							voznjef.setVisible(true);

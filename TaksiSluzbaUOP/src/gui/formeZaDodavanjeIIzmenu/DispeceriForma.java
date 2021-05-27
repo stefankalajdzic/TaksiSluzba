@@ -71,6 +71,7 @@ public class DispeceriForma extends JFrame {
 		initActions();
 		setResizable(false);
 		pack();
+		getRootPane().setDefaultButton(btnOk);
 	}
 	
 	private void initGUI() {
@@ -168,6 +169,7 @@ public class DispeceriForma extends JFrame {
 	
 	private void popuniPolja() {
 		txtId.setText(String.valueOf(dispecer.getId()));
+		txtId.setEnabled(false);
 		txtKorisnickoIme.setText(dispecer.getKorisnickoIme());
 		pfLozinka.setText(dispecer.getLozinka());
 		txtIme.setText(dispecer.getIme());

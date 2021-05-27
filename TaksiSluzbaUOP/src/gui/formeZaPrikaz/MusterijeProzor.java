@@ -131,8 +131,8 @@ public class MusterijeProzor extends JFrame {
 		btnAdd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VozaciForma vf = new VozaciForma(rsd, null);
-				vf.setVisible(true);
+				MusterijeForma mf = new MusterijeForma(rsd, null);
+				mf.setVisible(true);
 			}
 		});
 		

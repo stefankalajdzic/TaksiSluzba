@@ -70,6 +70,7 @@ public class VoznjeForma extends JFrame {
 		initActions();
 		setResizable(false);
 		pack();
+		getRootPane().setDefaultButton(btnOk);
 	}
 	
 	private void initGUI() {
@@ -175,6 +176,7 @@ public class VoznjeForma extends JFrame {
 	
 	private void popuniPolja() {
 		txtId.setText(String.valueOf(voznja.getId()));
+		txtId.setEnabled(false);
 		txtDatum.setText(voznja.getDatum());
 		txtVremePorudzbine.setText(voznja.getVremePorudzbine());
 		txtAdresaPolaska.setText(voznja.getAdresaPolaska());

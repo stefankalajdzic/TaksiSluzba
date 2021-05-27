@@ -20,8 +20,6 @@ public class GlavniProzorVozaci extends JFrame {
 	private JMenuItem zavrsiVoznjuItem = new JMenuItem("Zavrsi voznju");
 	private JMenu voznjeMenu = new JMenu("Voznje");
 	private JMenuItem voznjeItem = new JMenuItem("Voznje");
-	private JMenu vozaciMenu = new JMenu("Vozaci");
-	private JMenuItem vozaciItem = new JMenuItem("Vozaci");
 	
 	private RadSaDatotekama rsd;
 	private Vozac prijavljeniKorisnik;
@@ -43,23 +41,11 @@ public class GlavniProzorVozaci extends JFrame {
 		setJMenuBar(mainMenu);
 		mainMenu.add(zavrsiVoznjuMenu);
 		zavrsiVoznjuMenu.add(zavrsiVoznjuItem);
-		mainMenu.add(vozaciMenu);
-		vozaciMenu.add(vozaciItem);
 		mainMenu.add(voznjeMenu);
 		voznjeMenu.add(voznjeItem);
 	}
 	
 	private void initActions() {
-		vozaciItem.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				VozaciProzor vp = new VozaciProzor(rsd);
-				vp.setVisible(true);
-				
-			}
-		});
 		
 		voznjeItem.addActionListener(new ActionListener() {
 			

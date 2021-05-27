@@ -71,6 +71,7 @@ public class VozaciForma extends JFrame {
 		initActions();
 		setResizable(false);
 		pack();
+		getRootPane().setDefaultButton(btnOk);
 	}
 	
 	private void initGUI() {
@@ -176,6 +177,7 @@ public class VozaciForma extends JFrame {
 	
 	private void popuniPolja() {
 		txtId.setText(String.valueOf(vozac.getId()));
+		txtId.setEnabled(false);
 		txtKorisnickoIme.setText(vozac.getKorisnickoIme());
 		pfLozinka.setText(vozac.getLozinka());
 		txtIme.setText(vozac.getIme());
