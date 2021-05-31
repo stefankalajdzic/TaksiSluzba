@@ -69,22 +69,37 @@ public class VozaciForma extends JFrame {
 		setLocationRelativeTo(null);
 		initGUI();
 		initActions();
-		setResizable(false);
+		setResizable(true);
 		pack();
 		getRootPane().setDefaultButton(btnOk);
 	}
 	
 	private void initGUI() {
-		MigLayout layout = new MigLayout("wrap 2", "[][]", "[][][][][][][][][][][]20[]");
+		MigLayout layout = new MigLayout("wrap 2", "[][]", "[][][][][][][][][][][][]20[]");
 		setLayout(layout);
 		
 		if(vozac!= null) {
 			popuniPolja();
 		}
 //		cbAutomobil.addItem(vozac.getKorisnickoIme());
-		for(Automobil a: this.rsd.getAutomobili()) {
-			cbAutomobil.addItem(a.getBrRegistarskeOznake());
+		ArrayList<String> prva = new ArrayList<String>();
+		ArrayList<String> druga = new ArrayList<String>();
+		
+		//prodji kroz listu svih automobila
+		for(Automobil a : this.rsd.getAutomobili()) {
+			prva.add(a.getBrRegistarskeOznake());
 		}
+		// daj mi sve automobile koji su vec dodjeljeni vozacima
+		for(Vozac v : this.rsd.getVozaci()) {
+			druga.add(v.getAutomobil().getBrRegistarskeOznake());
+		}
+		// iz liste sa svim automobilima ukloni one koji su dodjeljeni vozacima
+		prva.removeAll(druga);
+		// porodji kroz listu svih automobila koji su slobodni i ubaci ih u combobox za odabir
+		for(String s : prva) {
+			cbAutomobil.addItem(s);			
+		}
+		
 		
 		add(lblId);
 		add(txtId);
@@ -110,7 +125,6 @@ public class VozaciForma extends JFrame {
 		add(txtbrojClanskeKarteUdruzenjaTaksista);
 		add(lblAutomobil);
 		add(cbAutomobil);
-		//dodati ostatak
 		add(new JLabel());
 		add(btnOk, "split 2");
 		add(btnCancel);
@@ -153,7 +167,7 @@ public class VozaciForma extends JFrame {
 						vozac.setPlata(plata);
 						vozac.setBrojClanskeKarteUdruzenjaTaksista(brojClanskeKarteUdruzenjaTaksista);
 						vozac.setAutomobil(automobil);
-						//dodati ostalo
+					
 						
 					}
 					rsd.snimiVozace(Main.VOZACI_FAJL);

@@ -1,3 +1,3 @@
 1|ilija|ilija123|Ilija|Kalajdzic|0108955104256|Profesora Aleksandra Nikolica 27|1|065517239|90000.0|br 1|1|false
-2|rada|rada123|Aleksandar|Kalajdzic|52152152521|Bulevar Mihajla Pupina 21|0|065421552|80000.0|15|1|false
-3|marko|marko123|Marko|Markovic|0509983194234|Kisacka 21|0|066524124|80000.0|15|1|false
+2|rada|rada123|Rada|Kalajdzic|52152152521|Bulevar Mihajla Pupina 21|0|065421552|80000.0|15|2|false
+3|marko|marko123|Marko|Markovic|0509983194234|Kisacka 21|0|066524124|80000.0|15|3|false

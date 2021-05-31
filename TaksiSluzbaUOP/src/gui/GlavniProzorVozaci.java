@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import gui.formeZaPrikaz.VozaciProzor;
 import gui.formeZaPrikaz.VoznjeProzor;
 import pojo.Vozac;
+import pojo.Voznja;
 import util.RadSaDatotekama;
 
 public class GlavniProzorVozaci extends JFrame {
@@ -23,6 +24,7 @@ public class GlavniProzorVozaci extends JFrame {
 	
 	private RadSaDatotekama rsd;
 	private Vozac prijavljeniKorisnik;
+	private Voznja voznja;
 	
 	public GlavniProzorVozaci(RadSaDatotekama rsd, Vozac prijavljeniKorisnik) {
 		this.rsd = rsd;
@@ -57,5 +59,8 @@ public class GlavniProzorVozaci extends JFrame {
 				
 			}
 		});
+		
 	}
+	
+	
 }

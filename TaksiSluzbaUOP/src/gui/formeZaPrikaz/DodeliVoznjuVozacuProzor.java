@@ -1,4 +1,4 @@
-package gui.formeZaDodavanjeIIzmenu;
+package gui.formeZaPrikaz;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +24,7 @@ import enums.EStatusVoznje;
 import gui.LoginProzor;
 import main.Main;
 
-public class VoznjeForma extends JFrame {
+public class DodeliVoznjuVozacuProzor extends JFrame {
 
 	//zavrseno
 	private JLabel lblId = new JLabel("Id");
@@ -41,10 +41,6 @@ public class VoznjeForma extends JFrame {
 	private JComboBox<String> cbMusterija = new JComboBox<String>();
 	private JLabel lblVozac = new JLabel("Vozac");
 	private JComboBox<String> cbVozac = new JComboBox<String>();
-	private JLabel lblBrojPredjenihKilometara = new JLabel("Broj predjenih kilometara");
-	private JTextField txtBrojPredjenihKilometara = new JTextField(20);
-	private JLabel lblTrajanjeVoznje = new JLabel("Trajanje voznje");
-	private JTextField txtTrajanjeVoznje = new JTextField(20);
 	private JLabel lblStatusVoznje = new JLabel("Status voznje");
 	private JComboBox<EStatusVoznje> cbStatusVoznje = new JComboBox<EStatusVoznje>(EStatusVoznje.values());
 	
@@ -56,19 +52,16 @@ public class VoznjeForma extends JFrame {
 	private RadSaDatotekama rsd;
 	private Voznja voznja;
 	
-	public VoznjeForma(RadSaDatotekama rsd, Voznja voznja) {
+	public DodeliVoznjuVozacuProzor(RadSaDatotekama rsd, Voznja voznja) {
 		this.rsd = rsd;
 		this.voznja = voznja;
-		if(voznja == null) {
-			setTitle("Dodavanje voznje");
-		}else {
-			setTitle("Izmena podataka - " + voznja.getDatum());
-		}
+		setTitle("Dodela voznje - " + voznja.getDatum());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
+		setSize(500, 500);
 		initGUI();
 		initActions();
-		setResizable(false);
+		setResizable(true);
 		pack();
 		getRootPane().setDefaultButton(btnOk);
 	}
@@ -82,10 +75,10 @@ public class VoznjeForma extends JFrame {
 		}
 //		cbAutomobil.addItem(vozac.getKorisnickoIme());
 		for(Musterija a: this.rsd.getMusterije()) {
-			cbMusterija.addItem(a.getKorisnickoIme());
+			cbMusterija.addItem(voznja.getMusterija().getKorisnickoIme());
 		}
 		
-		for(Vozac a: this.rsd.getVozaci()) {
+		for(Vozac a: this.rsd.sviNeobrisaniVozaci()) {
 			cbVozac.addItem(a.getKorisnickoIme());
 		}
 		
@@ -104,10 +97,6 @@ public class VoznjeForma extends JFrame {
 		add(cbMusterija);
 		add(lblVozac);
 		add(cbVozac);
-		add(lblBrojPredjenihKilometara);
-		add(txtBrojPredjenihKilometara);
-		add(lblTrajanjeVoznje);
-		add(txtTrajanjeVoznje);
 		add(lblStatusVoznje);
 		add(cbStatusVoznje);
 
@@ -122,43 +111,19 @@ public class VoznjeForma extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(validacija()) {
-					int id = Integer.parseInt(txtId.getText().trim());
-					String datum = txtDatum.getText().trim();
-					String vremePorudzbine = txtVremePorudzbine.getText().trim();
-					String adresaPolaska = txtAdresaPolaska.getText().trim();
-					String adresaDestinacije = txtAdresaDestinacije.getText().trim();
-					String musterijaZaPronalazak = cbMusterija.getSelectedItem().toString();
+
 					String vozacZaPronalazak = cbVozac.getSelectedItem().toString();
-					String brojPredjenihKilometara = txtBrojPredjenihKilometara.getText().trim();
-					String trajanjeVoznje = txtTrajanjeVoznje.getText().trim();
-					EStatusVoznje status = (EStatusVoznje)cbStatusVoznje.getSelectedItem();
 			
-					
-					Musterija musterija = rsd.NadjiMusterijuPoKorisnickomImenu(musterijaZaPronalazak);
 					Vozac vozac = rsd.NadjiVozacaPoKorisnickomImenu(vozacZaPronalazak);
-			
-					
-					// DODAVANJE:
-					if(voznja == null) { 
-						Voznja nova = new Voznja(id, datum, vremePorudzbine, adresaPolaska, adresaDestinacije, musterija, vozac, brojPredjenihKilometara, trajanjeVoznje, status, false);
-						rsd.dodajVoznju(nova);
-					// IZMJENA:
-					}else { 
-						voznja.setDatum(datum);
-						voznja.setVremePorudzbine(vremePorudzbine);
-						voznja.setAdresaPolaska(adresaPolaska);
-						voznja.setAdresaDestinacije(adresaDestinacije);
-						voznja.setMusterija(musterija);
+						
 						voznja.setVozac(vozac);
-						voznja.setBrojPredjenihKilometara(brojPredjenihKilometara);
-						voznja.setTrajanjeVoznje(trajanjeVoznje);
-						voznja.setStatus(status);
+						voznja.setStatus(EStatusVoznje.DODELJENA);
 						
 					}
 					rsd.snimiVoznje(Main.VOZNJE_FAJL);
-					VoznjeForma.this.dispose();
-					VoznjeForma.this.setVisible(false);
-				}
+					DodeliVoznjuVozacuProzor.this.dispose();
+					DodeliVoznjuVozacuProzor.this.setVisible(false);
+				
 			}
 		});
 		
@@ -166,8 +131,8 @@ public class VoznjeForma extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VoznjeForma.this.dispose();
-				VoznjeForma.this.setVisible(false);
+				DodeliVoznjuVozacuProzor.this.dispose();
+				DodeliVoznjuVozacuProzor.this.setVisible(false);
 				
 			}
 		});
@@ -178,14 +143,17 @@ public class VoznjeForma extends JFrame {
 		txtId.setText(String.valueOf(voznja.getId()));
 		txtId.setEnabled(false);
 		txtDatum.setText(voznja.getDatum());
+		txtDatum.setEnabled(false);
 		txtVremePorudzbine.setText(voznja.getVremePorudzbine());
+		txtVremePorudzbine.setEnabled(false);
 		txtAdresaPolaska.setText(voznja.getAdresaPolaska());
+		txtAdresaPolaska.setEnabled(false);
 		txtAdresaDestinacije.setText(voznja.getAdresaDestinacije());
+		txtAdresaDestinacije.setEnabled(false);
 		cbMusterija.setSelectedItem(String.valueOf(voznja.getMusterija().getKorisnickoIme()));
-		cbVozac.setSelectedItem(String.valueOf(voznja.getVozac().getKorisnickoIme()));
-		txtBrojPredjenihKilometara.setText(voznja.getBrojPredjenihKilometara());
-		txtTrajanjeVoznje.setText(voznja.getTrajanjeVoznje());
+		cbMusterija.setEnabled(false);
 		cbStatusVoznje.setSelectedItem(voznja.getStatus());	
+		cbStatusVoznje.setEnabled(false);
 	}
 	private boolean validacija() {
 		
@@ -223,18 +191,6 @@ public class VoznjeForma extends JFrame {
 		
 		if(txtAdresaDestinacije.getText().trim().equals("")) {
 			poruka += "- Unesite adresu destinacije\n";
-			ok = false;
-		}
-	
-		
-		if (txtBrojPredjenihKilometara.getText().trim().equals("")) {
-			poruka += "- Unesite broj predjenih kilometara\n";
-			ok = false;
-		}
-		
-		
-		if(txtTrajanjeVoznje.getText().trim().equals("")) {
-			poruka += "- Unesite trajanje voznje\n";
 			ok = false;
 		}
 		

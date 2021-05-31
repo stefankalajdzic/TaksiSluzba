@@ -1,11 +1,17 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import gui.formeZaPrikaz.DispeceriProzor;
+import gui.formeZaPrikaz.NaruciVoznjuProzor;
 import pojo.Musterija;
+import pojo.Voznja;
 import util.RadSaDatotekama;
 
 public class GlavniProzorMusterije extends JFrame {
@@ -37,6 +43,15 @@ public class GlavniProzorMusterije extends JFrame {
 	}
 	
 	private void initActions() {
-		
+		putemTelefonaItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				NaruciVoznjuProzor nvp = new NaruciVoznjuProzor(rsd, prijavljeniKorisnik);
+				nvp.setVisible(true);
+				
+			}
+		});
 	}
 }
