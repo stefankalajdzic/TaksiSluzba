@@ -475,33 +475,7 @@ public class RadSaDatotekama {
 
 					voznje.add(voznja);
 				}
-				
-				else if(Integer.parseInt(lineSplit[9]) == 3) {
-					int id = Integer.parseInt(lineSplit[0]);
-					String datum = lineSplit[1];
-					String vremePorudzbine = lineSplit[2];
-					String adresaPolaska = lineSplit[3];
-					String adresaDestinacije = lineSplit[4];
-					Musterija musterija = NadjiMusteriju(Integer.parseInt(lineSplit[5]));
-					Vozac vozac = nadjiVozaca(Integer.parseInt(lineSplit[6]));
-					EStatusVoznje status = EStatusVoznje.values()[Integer.parseInt(lineSplit[9])];
-					Boolean obrisan = Boolean.parseBoolean(lineSplit[10]);
-					
-					Voznja voznja = new Voznja();
-					voznja.setId(id);
-					voznja.setDatum(datum);
-					voznja.setVremePorudzbine(vremePorudzbine);
-					voznja.setAdresaPolaska(adresaPolaska);
-					voznja.setAdresaDestinacije(adresaDestinacije);
-					voznja.setMusterija(musterija);
-					voznja.setVozac(vozac);
-					voznja.setStatus(status);
-					voznja.setObrisan(obrisan);
-					musterija.getNjegoveVoznje().add(voznja);
-
-					voznje.add(voznja);
-				}
-				
+		
 				else if(Integer.parseInt(lineSplit[9]) == 4) {
 					int id = Integer.parseInt(lineSplit[0]);
 					String datum = lineSplit[1];
@@ -572,6 +546,28 @@ public class RadSaDatotekama {
 					}
 				
 				else if(voznja.getStatus() == EStatusVoznje.DODELJENA) {
+					
+					sadrzaj += voznja.getId() + "|" + voznja.getDatum() + "|" 
+							+ voznja.getVremePorudzbine() + "|" 
+							+ voznja.getAdresaPolaska() + "|" + voznja.getAdresaDestinacije() + "|"
+							+ String.valueOf(voznja.getMusterija().getId()) + "|" 
+							+ String.valueOf(voznja.getVozac().getId()) + "|" 
+							+ "--" + "|" + "--" + "|" 
+							+ voznja.getStatus().ordinal() + "|" + voznja.isObrisan() + "\n";
+					}
+				
+				else if(voznja.getStatus() == EStatusVoznje.ODBIJENA) {
+					
+					sadrzaj += voznja.getId() + "|" + voznja.getDatum() + "|" 
+							+ voznja.getVremePorudzbine() + "|" 
+							+ voznja.getAdresaPolaska() + "|" + voznja.getAdresaDestinacije() + "|"
+							+ String.valueOf(voznja.getMusterija().getId()) + "|" 
+							+ String.valueOf(voznja.getVozac().getId()) + "|" 
+							+ "--" + "|" + "--" + "|" 
+							+ voznja.getStatus().ordinal() + "|" + voznja.isObrisan() + "\n";
+					}
+				
+				else if(voznja.getStatus() == EStatusVoznje.PRIHVACENA) {
 					
 					sadrzaj += voznja.getId() + "|" + voznja.getDatum() + "|" 
 							+ voznja.getVremePorudzbine() + "|" 

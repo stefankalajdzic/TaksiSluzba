@@ -1,5 +1,6 @@
-1|kalaj|kalaj123|Stefan|Kalajdzic|1508995251241|Danila Kisa 5|1|0650722922|false
-2|mirko|mirko123|Mirko|Zivkovic|0709995124524|Es naselje 14|1|066072266|false
-3|sakac|sakac123|Aleksandar|Simikic|1803996125643|Safeta Pasalica 98|1|0645243256|false
-4|mario|mario123|Stefan|Kalajdzic|2504987827643|Bulevar Oslobodjenja 25|1|06598764|false
-5|danda|dandara3|Damjan|Aleksic|2904000190012|Bileca bb|1|0642542243|false
+1|kalaj|kalaj123|Stefan|Kalajdzic|1508995251241|Danila Kisa 5|0|0650722922|false
+2|mirko|mirko123|Mirko|Zivkovic|0709995124524|Es naselje 14|0|066072266|false
+3|sakac|sakac123|Aleksandar|Simikic|1803996125643|Safeta Pasalica 98|0|0645243256|false
+4|mario|mario123|Stefan|Kalajdzic|2504987827643|Bulevar Oslobodjenja 25|0|06598764|false
+5|danda|dandara3|Damjan|Aleksic|2904000190012|Bileca bb|0|0642542243|false
+6|djuke|jox3324|Milos|Djuric|2712000125643|Vuka S Karadzica bb|0|0649372577|false

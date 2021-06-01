@@ -14,8 +14,6 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		
-		
 		RadSaDatotekama rsd = new RadSaDatotekama();
 		rsd.ucitajAutomobile(AUTOMOBILI_FAJL);
 		rsd.ucitajDispecere(DISPECERI_FAJL);

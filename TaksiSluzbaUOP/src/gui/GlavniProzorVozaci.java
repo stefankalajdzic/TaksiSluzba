@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 
 import gui.formeZaPrikaz.VozaciProzor;
 import gui.formeZaPrikaz.VoznjeProzor;
+import gui.formeZaPrikaz.VoznjeZaVozacaProzor;
 import pojo.Vozac;
 import pojo.Voznja;
 import util.RadSaDatotekama;
@@ -17,8 +18,6 @@ import util.RadSaDatotekama;
 public class GlavniProzorVozaci extends JFrame {
 
 	private JMenuBar mainMenu = new JMenuBar();
-	private JMenu zavrsiVoznjuMenu = new JMenu("Zavrsi voznju");
-	private JMenuItem zavrsiVoznjuItem = new JMenuItem("Zavrsi voznju");
 	private JMenu voznjeMenu = new JMenu("Voznje");
 	private JMenuItem voznjeItem = new JMenuItem("Voznje");
 	
@@ -41,8 +40,6 @@ public class GlavniProzorVozaci extends JFrame {
 	
 	private void initMenu() {
 		setJMenuBar(mainMenu);
-		mainMenu.add(zavrsiVoznjuMenu);
-		zavrsiVoznjuMenu.add(zavrsiVoznjuItem);
 		mainMenu.add(voznjeMenu);
 		voznjeMenu.add(voznjeItem);
 	}
@@ -54,8 +51,8 @@ public class GlavniProzorVozaci extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				VoznjeProzor voznjep = new VoznjeProzor(rsd);
-				voznjep.setVisible(true);
+				VoznjeZaVozacaProzor vzvp = new VoznjeZaVozacaProzor(rsd, prijavljeniKorisnik);
+				vzvp.setVisible(true);
 				
 			}
 		});

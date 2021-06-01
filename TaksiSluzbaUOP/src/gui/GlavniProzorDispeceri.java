@@ -18,7 +18,6 @@ import util.RadSaDatotekama;
 public class GlavniProzorDispeceri extends JFrame {
 
 	private JMenuBar mainMenu = new JMenuBar();
-	private JMenu dodeliVoznju = new JMenu("Dodeli voznju vozacu");
 	private JMenu dispeceriMenu = new JMenu("Dispeceri");
 	private JMenuItem dispeceriItem = new JMenuItem("Prikaz dispecera");
 	private JMenu MusterijeMenu = new JMenu("Musterije");
@@ -45,7 +44,6 @@ public class GlavniProzorDispeceri extends JFrame {
 	
 	private void initMenu() {
 		setJMenuBar(mainMenu);
-		mainMenu.add(dodeliVoznju);
 		mainMenu.add(dispeceriMenu);
 		mainMenu.add(MusterijeMenu);
 		mainMenu.add(VozaciMenu);

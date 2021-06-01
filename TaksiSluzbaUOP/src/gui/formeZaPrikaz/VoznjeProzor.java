@@ -56,7 +56,8 @@ public class VoznjeProzor extends JFrame {
 		btnEdit.setIcon(editIcon);
 		ImageIcon removeIcon = new ImageIcon(getClass().getResource("/slike/remove.gif"));
 		btnDelete.setIcon(removeIcon);
-		btnDodeliVoznjuVozacu.setIcon(addIcon);
+		ImageIcon dodeliVoznjuIcon = new ImageIcon(getClass().getResource("/slike/picture 2.png"));
+		btnDodeliVoznjuVozacu.setIcon(dodeliVoznjuIcon);
 		
 		mainToolbar.add(btnAdd);
 		mainToolbar.add(btnEdit);
@@ -79,8 +80,8 @@ public class VoznjeProzor extends JFrame {
 			sadrzaj[i][2] = voznja.getVremePorudzbine();
 			sadrzaj[i][3] = voznja.getAdresaPolaska();
 			sadrzaj[i][4] = voznja.getAdresaDestinacije();
-			sadrzaj[i][5] = musterija.isObrisan() ? "Obrisana musterija" : musterija.getIme() + " " + musterija.getPrezime();
-			sadrzaj[i][6] = vozac.isObrisan() ? "Obrisan vozac" : vozac.getIme() + " " + vozac.getPrezime();
+			sadrzaj[i][5] = musterija.isObrisan() ? "Obrisana musterija" : musterija.getIme();
+			sadrzaj[i][6] = vozac.isObrisan() ? "Obrisan vozac" : vozac.getIme();
 			sadrzaj[i][7] = voznja.getBrojPredjenihKilometara();
 			sadrzaj[i][8] = voznja.getTrajanjeVoznje();
 			sadrzaj[i][9] = voznja.getStatus();
